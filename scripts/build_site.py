@@ -1289,11 +1289,6 @@ def render_post_body(post: dict[str, Any], body_id: str, hidden: bool) -> str:
             f"            {footer}\n"
             "          </blockquote>"
         )
-    verified_html = (
-        '<span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span>'
-        if post.get("fact_checked")
-        else ""
-    )
     hidden_cls = "hidden " if hidden else ""
     return (
         f'        <div id="{esc(body_id)}" class="{hidden_cls}markdown-body post-body">\n'
@@ -1317,8 +1312,7 @@ def render_post_body(post: dict[str, Any], body_id: str, hidden: bool) -> str:
         "            </div>\n"
         "          </div>\n"
         f"{quote_html}\n"
-        '          <div class="post-footer flex items-center justify-between gap-2 muted-text">\n'
-        f"            <span>{verified_html}</span>\n"
+        '          <div class="post-footer flex items-center justify-end gap-2 muted-text">\n'
         f'            <span class="font-mono" style="font-size: 11px;">#{esc(post_id)}</span>\n'
         "          </div>\n"
         "        </div>"

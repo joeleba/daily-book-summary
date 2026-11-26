@@ -247,13 +247,6 @@ def render_email_html(post: dict[str, Any], site_base_url: str) -> str:
         for t in tags
     )
 
-    verified_html = (
-        '<span style="display:inline-block;padding:2px 8px;font-size:11px;font-weight:600;'
-        'background-color:#e3f0ea;color:#0b5d4b;border-radius:2px;">✓ Fact-checked</span>'
-        if post.get("fact_checked")
-        else ""
-    )
-
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -345,7 +338,7 @@ def render_email_html(post: dict[str, Any], site_base_url: str) -> str:
                     <!-- Footer Row -->
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding-top:4px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12px;color:#66605c;">
                       <tr>
-                        <td>{verified_html} <span style="margin-left:6px;">{words} words</span></td>
+                        <td><span>{words} words</span></td>
                         <td align="right"><a href="{esc(base)}/" style="color:#0d7680;text-decoration:none;font-weight:600;">Browse full archive →</a></td>
                       </tr>
                     </table>
