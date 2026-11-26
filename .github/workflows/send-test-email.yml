@@ -1,0 +1,41 @@
+name: Send Test Digest Email
+
+on:
+  workflow_dispatch:
+    inputs:
+      recipient:
+        description: "Recipient email (leave blank to use DIGEST_RECIPIENTS secret)"
+        type: string
+        default: "hieu.giang.2810@gmail.com"
+      post_id:
+        description: "Optional post id from posts.json (leave blank for latest entry)"
+        type: string
+        default: ""
+
+jobs:
+  send-test-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Send test email
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_RECIPIENTS: ${{ secrets.DIGEST_RECIPIENTS }}
+          TEST_RECIPIENT: ${{ inputs.recipient }}
+          TEST_POST_ID: ${{ inputs.post_id }}
+        run: |
+          if [[ -z "${GMAIL_ADDRESS:-}" || -z "${GMAIL_APP_PASSWORD:-}" ]]; then
+            echo "::error::Add GMAIL_ADDRESS and GMAIL_APP_PASSWORD in Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+          ARGS=(--subject-prefix "[Test] ")
+          if [[ -n "${TEST_RECIPIENT:-}" ]]; then
+            ARGS+=(--to "$TEST_RECIPIENT")
+          fi
+          if [[ -n "${TEST_POST_ID:-}" ]]; then
+            ARGS+=(--post-id "$TEST_POST_ID")
+          fi
+          python3 scripts/send_email.py "${ARGS[@]}"

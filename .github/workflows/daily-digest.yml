@@ -121,3 +121,12 @@ jobs:
             git commit -m "Add daily book idea (${{ steps.gate.outputs.today }})"
             git push
           fi
+
+      - name: Email today's digest
+        if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_RECIPIENTS: ${{ secrets.DIGEST_RECIPIENTS }}
+        run: |
+          python3 scripts/send_email.py --date "${{ steps.gate.outputs.today }}"
