@@ -14,6 +14,10 @@ on:
         description: "Run even if a post for today already exists"
         type: boolean
         default: true
+      model:
+        description: "Antigravity CLI model slug"
+        type: string
+        default: "gemini-4-neon-medium"
 
 permissions:
   contents: write
@@ -90,13 +94,14 @@ jobs:
         if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          AGY_MODEL: ${{ inputs.model || 'gemini-4-neon-medium' }}
         run: |
           if [[ -z "${GEMINI_API_KEY:-}" ]]; then
             echo "::error::GEMINI_API_KEY repository secret is not set. Add it in Settings -> Secrets and variables -> Actions."
             exit 1
           fi
           PROMPT=$(printf "Today's date (Europe/Berlin) is %s.\n\n%s" "${{ steps.gate.outputs.today }}" "$(cat prompts/daily-digest.md)")
-          agy -p "$PROMPT" --dangerously-skip-permissions --print-timeout 15m
+          agy -p "$PROMPT" --model "$AGY_MODEL" --dangerously-skip-permissions --print-timeout 15m
 
       - name: Validate posts.json and rebuild static site
         if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
