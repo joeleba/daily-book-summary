@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-style="economist">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Think slow, act fast—and build from modular blocks — Daily Book Ideas</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+  <style>
+    .container { max-width: 960px; margin: 0 auto; }
+
+    :root {
+      color-scheme: light;
+      --econ-red: #e3120b;
+      --econ-red-soft: rgba(227, 18, 11, 0.08);
+      --econ-blue: #1d4f73;
+      --bg-color: #f8f6f1;
+      --text-color: #141414;
+      --muted-color: #5c5852;
+      --card-bg: #ffffff;
+      --border-color: #ddd8ce;
+      --header-bg: #f1ede4;
+      --details-bg: #faf8f4;
+      --input-bg: #ffffff;
+      --input-border: #c9c3b8;
+      --link-color: #1d4f73;
+      --code-bg: #efeae0;
+      --highlight-ring: #e3120b;
+      --highlight-bg: #fffaf9;
+      --verified-bg: #ebf5ee;
+      --verified-fg: #1b5e34;
+      --chart-grid: #e3ded4;
+      --chart-bench: #8a949e;
+      --serif-font: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+      --sans-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --econ-red: #f03a33;
+      --econ-red-soft: rgba(240, 58, 51, 0.14);
+      --econ-blue: #6aa7cf;
+      --bg-color: #121316;
+      --text-color: #ece9e2;
+      --muted-color: #a39f97;
+      --card-bg: #191b1f;
+      --border-color: #2b2e35;
+      --header-bg: #21242b;
+      --details-bg: #16181c;
+      --input-bg: #15171b;
+      --input-border: #3a3e48;
+      --link-color: #6aa7cf;
+      --code-bg: #23262e;
+      --highlight-ring: #f03a33;
+      --highlight-bg: rgba(240, 58, 51, 0.07);
+      --verified-bg: rgba(46, 160, 67, 0.18);
+      --verified-fg: #85e0a3;
+      --chart-grid: #2c3038;
+      --chart-bench: #6e7781;
+    }
+
+    /* Financial Times (FT) Editorial Theme — Light (Iconic Salmon Paper & Claret) */
+    html[data-style="ft"] {
+      --econ-red: #990f3d;
+      --econ-red-soft: rgba(153, 15, 61, 0.10);
+      --econ-blue: #0d7680;
+      --bg-color: #fff1e5;
+      --text-color: #1a1816;
+      --muted-color: #66605c;
+      --card-bg: #fff7f0;
+      --border-color: #e6d0bd;
+      --header-bg: #f2dfce;
+      --details-bg: #fceee1;
+      --input-bg: #fffaf5;
+      --input-border: #d9bfa9;
+      --link-color: #0d7680;
+      --code-bg: #f2dfce;
+      --highlight-ring: #990f3d;
+      --highlight-bg: #ffece0;
+      --verified-bg: #e3f0ea;
+      --verified-fg: #0b5d4b;
+      --chart-grid: #e3ccb8;
+      --chart-bench: #9e8f84;
+    }
+
+    /* Financial Times (FT) Editorial Theme — Dark (Deep Espresso & Claret) */
+    html[data-style="ft"][data-theme="dark"] {
+      --econ-red: #e05a84;
+      --econ-red-soft: rgba(224, 90, 132, 0.16);
+      --econ-blue: #4db6c0;
+      --bg-color: #181311;
+      --text-color: #f3e8df;
+      --muted-color: #b5a497;
+      --card-bg: #221b18;
+      --border-color: #3a2f2a;
+      --header-bg: #2c231f;
+      --details-bg: #1d1714;
+      --input-bg: #1b1513;
+      --input-border: #4a3c36;
+      --link-color: #4db6c0;
+      --code-bg: #2e2420;
+      --highlight-ring: #e05a84;
+      --highlight-bg: rgba(224, 90, 132, 0.08);
+      --verified-bg: rgba(77, 182, 192, 0.18);
+      --verified-fg: #8ce0e8;
+      --chart-grid: #3b302b;
+      --chart-bench: #8a7b72;
+    }
+
+    .style-switch {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      overflow: hidden;
+      background-color: var(--header-bg);
+    }
+    .style-switch-btn {
+      padding: 5px 9px;
+      border: 0;
+      background: transparent;
+      color: var(--muted-color);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .style-switch-btn:hover {
+      color: var(--text-color);
+    }
+    .style-switch-btn.active {
+      background-color: var(--econ-red);
+      color: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      font-family: var(--sans-font);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      border-top: 4px solid var(--econ-red);
+      padding: 20px 22px 48px;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, p { margin: 0; }
+    .hidden { display: none !important; }
+    .flex { display: flex; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-1 { flex: 1 1 0%; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .justify-between { justify-content: space-between; }
+    .justify-end { justify-content: flex-end; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-1-5 { gap: 0.375rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .min-w-0 { min-width: 0; }
+    .shrink-0 { flex-shrink: 0; }
+    .font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .muted-text { color: var(--muted-color); }
+    .grid-1 { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+
+    a { color: var(--link-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    :focus-visible {
+      outline: 2px solid var(--econ-red);
+      outline-offset: 2px;
+    }
+
+    code {
+      background-color: var(--code-bg);
+      color: var(--text-color);
+      padding: 1px 5px;
+      border-radius: 2px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.86em;
+    }
+
+    .masthead {
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--text-color);
+      margin-bottom: 14px;
+    }
+    .econ-brand-pill {
+      display: inline-block;
+      background-color: var(--econ-red);
+      color: #ffffff;
+      font-family: var(--serif-font);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+    .masthead-title {
+      font-family: var(--serif-font);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .stat-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 9px;
+      border-radius: 2px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      font-size: 12px;
+    }
+    .stat-item strong { font-weight: 700; }
+
+    .toolbar {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      padding: 9px 12px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 6px 10px;
+      border: 1px solid var(--input-border);
+      border-radius: 2px;
+      font-size: 13px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+    input[type="text"]:focus {
+      border-color: var(--econ-red);
+      outline: none;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    .action-btn:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .hash-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      color: var(--econ-red);
+    }
+
+    .toast-pill {
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--verified-bg);
+      color: var(--verified-fg);
+    }
+
+    .tag-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted-color);
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+    }
+    .tag-pill:hover {
+      border-color: var(--econ-red);
+      color: var(--text-color);
+    }
+    .tag-pill.active {
+      background-color: var(--econ-red-soft);
+      color: var(--econ-red);
+      border-color: var(--econ-red);
+    }
+    .pill-count {
+      font-size: 11px;
+      padding: 0 5px;
+      border-radius: 2px;
+      background-color: var(--header-bg);
+      color: var(--muted-color);
+    }
+    .tag-pill.active .pill-count {
+      color: var(--econ-red);
+      font-weight: 700;
+    }
+
+    .wiki-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-top: 2px solid var(--text-color);
+      border-radius: 2px;
+      padding: 15px 18px;
+    }
+    .wiki-card.row-highlight {
+      background-color: var(--highlight-bg);
+      border-top-color: var(--econ-red);
+      outline: 2px solid var(--econ-red);
+      outline-offset: -2px;
+    }
+
+    .post-header { cursor: pointer; }
+    .post-header.static-header { cursor: default; }
+    .kicker-line {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--econ-red);
+      margin-bottom: 4px;
+      padding-left: 22px;
+    }
+    .static-header .kicker-line,
+    .static-header .post-subline,
+    .static-header .post-tags-row {
+      padding-left: 0;
+    }
+    .post-title {
+      font-family: var(--serif-font);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .post-subline {
+      font-size: 13px;
+      margin-top: 4px;
+      padding-left: 22px;
+    }
+    .post-tags-row {
+      margin-top: 8px;
+      padding-left: 22px;
+    }
+    .post-meta-right {
+      font-size: 11.5px;
+      line-height: 1.4;
+      text-align: right;
+    }
+    .post-word-count {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .chevron-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      color: var(--econ-red);
+      transition: transform 0.15s ease;
+      flex-shrink: 0;
+    }
+    .chevron-wrap.open { transform: rotate(90deg); }
+    .chevron-svg { width: 14px; height: 14px; }
+
+    .category-tag {
+      font-size: 11px;
+      padding: 1px 7px;
+      border-radius: 2px;
+      background-color: var(--header-bg);
+      color: var(--muted-color);
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .category-tag:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .verified-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 2px;
+      background-color: var(--verified-bg);
+      color: var(--verified-fg);
+    }
+
+    .more-pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-size: 11px;
+      color: var(--muted-color);
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+    .more-pill:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .post-body {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .markdown-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+    .markdown-body .md-h2, .md-h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--econ-red);
+      margin: 0 0 5px 0;
+    }
+    .markdown-body .md-p { margin: 0; }
+    .markdown-body .md-p + .md-p, .md-p + .md-p { margin-top: 9px; }
+    .idea-section { margin-bottom: 14px; }
+
+    .idea-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 720px) {
+      .idea-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .idea-box {
+      padding: 12px 14px;
+      border-radius: 2px;
+      background-color: var(--details-bg);
+      border: 1px solid var(--border-color);
+      border-top-width: 2.5px;
+    }
+    .idea-box-for { border-top-color: var(--econ-blue); }
+    .idea-box-for .md-h2 { color: var(--econ-blue); }
+    .idea-box-against { border-top-color: var(--econ-red); }
+
+    .quote-block {
+      margin: 0 0 12px 0;
+      padding: 12px 16px;
+      border-left: 3px solid var(--econ-red);
+      background-color: var(--details-bg);
+      font-family: var(--serif-font);
+      font-size: 15px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .quote-block footer {
+      margin-top: 6px;
+      font-family: var(--sans-font);
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted-color);
+    }
+
+    /* Economist Graphic Detail Chart */
+    .econ-chart-box {
+      margin: 0 0 16px 0;
+      padding: 14px 16px 12px;
+      background-color: var(--details-bg);
+      border: 1px solid var(--border-color);
+      border-top: 2px solid var(--text-color);
+    }
+    .econ-chart-bar {
+      width: 28px;
+      height: 4px;
+      background-color: var(--econ-red);
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-family: var(--sans-font);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-color);
+      line-height: 1.25;
+    }
+    .chart-subtitle {
+      font-size: 12px;
+      color: var(--muted-color);
+      margin-top: 2px;
+      margin-bottom: 10px;
+    }
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      color: var(--muted-color);
+    }
+    .chart-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chart-legend-swatch {
+      width: 14px;
+      height: 3px;
+      display: inline-block;
+    }
+    .chart-svg-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .econ-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .chart-grid {
+      stroke: var(--chart-grid);
+      stroke-width: 1;
+      stroke-dasharray: 2 2;
+    }
+    .chart-axis {
+      stroke: var(--muted-color);
+      stroke-width: 1;
+    }
+    .chart-tick {
+      fill: var(--muted-color);
+      font-size: 10.5px;
+      font-family: var(--sans-font);
+    }
+    .chart-label {
+      fill: var(--text-color);
+      font-size: 11.5px;
+      font-weight: 500;
+      font-family: var(--sans-font);
+    }
+    .chart-val {
+      fill: var(--text-color);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: var(--sans-font);
+    }
+    .chart-bar-primary { fill: var(--econ-red); }
+    .chart-bar-bench { fill: var(--chart-bench); }
+    .chart-line-primary { stroke: var(--econ-red); stroke-width: 2.5; fill: none; }
+    .chart-line-secondary { stroke: var(--econ-blue); stroke-width: 2; fill: none; }
+    .chart-dot-primary { fill: var(--econ-red); }
+    .chart-dot-secondary { fill: var(--econ-blue); }
+    .chart-source {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted-color);
+    }
+
+    .post-footer { padding-top: 6px; }
+    .empty-state {
+      padding: 28px 16px;
+      text-align: center;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--muted-color);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="masthead flex flex-wrap justify-between items-center gap-3">
+      <div>
+        <div class="flex items-center gap-2 flex-wrap" style="margin-bottom: 5px;">
+          <span class="econ-brand-pill">Reading Brief</span>
+          <a href="../index.html" class="action-btn">← All Daily Book Ideas</a>
+        </div>
+        <h1 class="masthead-title">Daily Book Ideas</h1>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="style-switch" role="group" aria-label="Editorial theme">
+          <button type="button" id="styleBtnEconomist" class="style-switch-btn active" aria-pressed="true" onclick="setStyle('economist')">Economist</button>
+          <button type="button" id="styleBtnFt" class="style-switch-btn" aria-pressed="false" onclick="setStyle('ft')">FT</button>
+        </div>
+        <button type="button" class="action-btn" onclick="copyShareLink()" title="Copy entry link">Copy Link</button>
+        <div id="copyToast" class="hidden toast-pill" role="status" aria-live="polite">Copied!</div>
+        <button type="button" id="themeToggleBtn" class="action-btn" onclick="toggleTheme()">Dark Mode</button>
+      </div>
+    </header>
+
+    <main class="grid-1">
+      <article class="wiki-card">
+        <div class="flex items-start justify-between gap-3 post-header static-header">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">STRATEGY · FT 2023 SHORTLIST</div>
+            <h2 class="post-title">Think slow, act fast—and build from modular blocks</h2>
+            <div class="post-subline muted-text">
+              <span><strong>How Big Things Get Done: The Surprising Factors That Determine the Fate of Every Project, from Home Renovations to Space Exploration, and Everything in Between</strong> · Bent Flyvbjerg and Dan Gardner</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row">
+              <a class="category-tag" href="../index.html#tag=strategy">#strategy</a> <a class="category-tag" href="../index.html#tag=project-management">#project-management</a> <a class="category-tag" href="../index.html#tag=modularity">#modularity</a> <a class="category-tag" href="../index.html#tag=risk">#risk</a> <a class="category-tag" href="../index.html#tag=ft-2023-shortlist">#ft-2023-shortlist</a>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right">
+            <div class="font-mono">2026-11-23</div>
+            <div class="post-word-count">512 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-23-think-slow-modularity" class="markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Most large endeavors fail long before execution begins—they start wrong. Drawing on a global database of over 16,000 projects across 136 countries and more than 20 fields, Bent Flyvbjerg and Dan Gardner uncover what they call the &quot;Iron Law of Megaprojects&quot;: over budget, over time, under benefits, over and over again. Only 8.5% of projects finish on budget and on time, and just 0.5% deliver on budget, schedule, and promised benefits. Worse, cost overruns are &quot;fat-tailed,&quot; meaning extreme blowouts happen far more often than standard risk models expect.</p>
+<p class="md-p">To beat the Iron Law, Flyvbjerg and Gardner prescribe two interlocking rules: &quot;think slow, act fast&quot; and &quot;find your Lego.&quot; Planning is cheap and safe, whereas active delivery burns capital daily and opens what the authors call the &quot;window of doom&quot;—exposure to political, market, and supply shocks. Rigorous upfront simulation and design let teams compress delivery into a fast, disciplined sprint, while breaking bespoke megaprojects into standardized, repeatable modules turns one-off gambles into steep learning curves.</p>
+          </div>
+          <figure class="econ-chart-box">
+            <div class="econ-chart-bar"></div>
+            <h5 class="chart-title">Modularity tames fat-tailed cost blowouts</h5>
+            <p class="chart-subtitle">Share of projects with cost overruns of 50% or more (%)</p>
+            
+            <div class="chart-svg-wrap">
+              <svg viewBox="0 0 680 206" class="econ-svg" role="img" aria-label="Modularity tames fat-tailed cost blowouts">
+<line x1="260.0" y1="14" x2="260.0" y2="196" class="chart-grid"></line>
+<text x="260.0" y="11" text-anchor="middle" class="chart-tick">0%</text>
+<line x1="351.5" y1="14" x2="351.5" y2="196" class="chart-grid"></line>
+<text x="351.5" y="11" text-anchor="middle" class="chart-tick">25%</text>
+<line x1="443.0" y1="14" x2="443.0" y2="196" class="chart-grid"></line>
+<text x="443.0" y="11" text-anchor="middle" class="chart-tick">50%</text>
+<line x1="534.5" y1="14" x2="534.5" y2="196" class="chart-grid"></line>
+<text x="534.5" y="11" text-anchor="middle" class="chart-tick">75%</text>
+<line x1="626.0" y1="14" x2="626.0" y2="196" class="chart-grid"></line>
+<text x="626.0" y="11" text-anchor="middle" class="chart-tick">100%</text>
+<text x="248" y="43.3" text-anchor="end" class="chart-label">Solar power (modular)</text>
+<rect x="260" y="30.0" width="7.3" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="273.3" y="43.3" class="chart-val">2%</text>
+<text x="248" y="77.3" text-anchor="end" class="chart-label">Wind power (modular)</text>
+<rect x="260" y="64.0" width="25.6" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="291.6" y="77.3" class="chart-val">7%</text>
+<text x="248" y="111.3" text-anchor="end" class="chart-label">IT projects</text>
+<rect x="260" y="98.0" width="65.9" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="331.9" y="111.3" class="chart-val">18%</text>
+<text x="248" y="145.3" text-anchor="end" class="chart-label">Nuclear power (bespoke)</text>
+<rect x="260" y="132.0" width="201.3" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="467.3" y="145.3" class="chart-val">55%</text>
+<text x="248" y="179.3" text-anchor="end" class="chart-label">Olympic Games (bespoke)</text>
+<rect x="260" y="166.0" width="278.2" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="544.2" y="179.3" class="chart-val">76%</text>
+</svg>
+            </div>
+            <div class="chart-source">Source: Bent Flyvbjerg &amp; Dan Gardner, How Big Things Get Done (Feb 2023), Appendix A</div>
+          </figure>
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In 1929, developers John Raskob and Al Smith set out to build the Empire State Building—then the world&#x27;s tallest skyscraper—on a brutal schedule. Rather than rushing crews onto the site to improvise, architects Shreve, Lamb &amp; Harmon and builders Starrett Brothers &amp; Eken spent months mapping every structural detail on paper, standardizing floor plans, steel beams, exterior stone panels, and window frames into repeatable units.</p>
+<p class="md-p">Once tower construction began in March 1930, the steel frame rose averaging roughly 4.5 stories a week, and the skyscraper went from initial sketch to completion in 21 months (about 13 months of main tower construction). Even with Depression-era price deflation lending a tailwind, disciplined upfront design paid off: budgeted at $50 million, the tower opened ahead of schedule at roughly $41 million—about 17–18% under budget.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Treating planning as cheap experimentation and delivery as a fast assembly line directly attacks fat-tailed risk. Iterating on paper, in software models, or with pilot modules costs pennies compared to fixing mistakes mid-build, when crews sit idle and financing charges compound.</p>
+<p class="md-p">Flyvbjerg&#x27;s Appendix A data confirms the payoff of repeatability: modular technologies such as solar farms (2% suffering 50%+ overruns, +1% mean overrun) and wind power (7% in the tail, +13% mean) stay close to budget, whereas bespoke nuclear plants (55% in the tail, +120% mean) and Olympic Games (76% in the tail, +157% mean) routinely spiral.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Excessive upfront planning can slide into analysis paralysis when user needs or underlying technologies shift faster than a static blueprint can anticipate. In fast-moving software or exploratory R&amp;D, spending a year perfecting specifications before shipping risks building the wrong product cleanly.</p>
+<p class="md-p">Modularity also has real physical and strategic limits. Not every landmark or frontier infrastructure system can be stamped from identical Lego bricks—and occasionally, as with the Sydney Opera House (roughly 1,400% over budget and 10 years late, yet a UNESCO World Heritage icon), society judges a bespoke creation by cultural breakthroughs that cost-benefit tables miss.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“Put enormous care and effort into planning to ensure that delivery is smooth and swift. Think slow, act fast: That&#x27;s the secret of success.”</p>
+            <footer>— Bent Flyvbjerg &amp; Dan Gardner, How Big Things Get Done (2023), Chapter 1</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-between gap-2 muted-text">
+            <span><span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span></span>
+            <span class="font-mono" style="font-size: 11px;">#2026-11-23-think-slow-modularity</span>
+          </div>
+        </div>
+      </article>
+    </main>
+  </div>
+  <script>
+    function getCookie(name) {
+      try {
+        var prefix = encodeURIComponent(name) + '=';
+        var parts = document.cookie ? document.cookie.split(';') : [];
+        for (var i = 0; i < parts.length; i++) {
+          var c = parts[i].trim();
+          if (c.indexOf(prefix) === 0) {
+            return decodeURIComponent(c.slice(prefix.length));
+          }
+        }
+      } catch (e) {}
+      return null;
+    }
+    function setCookie(name, value) {
+      try {
+        document.cookie =
+          encodeURIComponent(name) + '=' + encodeURIComponent(value) +
+          '; max-age=31536000; path=/; SameSite=Lax';
+      } catch (e) {}
+    }
+    function getPref(k) {
+      var fromCookie = getCookie(k);
+      if (fromCookie !== null) return fromCookie;
+      try { return window.localStorage.getItem(k); } catch (e) { return null; }
+    }
+    function setPref(k, v) {
+      setCookie(k, v);
+      try { window.localStorage.setItem(k, v); } catch (e) {}
+    }
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      var btn = document.getElementById('themeToggleBtn');
+      if (btn) btn.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
+    function toggleTheme() {
+      var cur = document.documentElement.getAttribute('data-theme') || 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      setPref('book_ideas_theme', next);
+    }
+    function applyStyle(style) {
+      var normalized = style === 'ft' ? 'ft' : 'economist';
+      document.documentElement.setAttribute('data-style', normalized);
+      var econBtn = document.getElementById('styleBtnEconomist');
+      var ftBtn = document.getElementById('styleBtnFt');
+      if (econBtn) {
+        econBtn.classList.toggle('active', normalized === 'economist');
+        econBtn.setAttribute('aria-pressed', normalized === 'economist' ? 'true' : 'false');
+      }
+      if (ftBtn) {
+        ftBtn.classList.toggle('active', normalized === 'ft');
+        ftBtn.setAttribute('aria-pressed', normalized === 'ft' ? 'true' : 'false');
+      }
+    }
+    function setStyle(style) {
+      applyStyle(style);
+      setPref('book_ideas_style', style === 'ft' ? 'ft' : 'economist');
+    }
+    function copyShareLink() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          var toast = document.getElementById('copyToast');
+          if (!toast) return;
+          toast.classList.remove('hidden');
+          setTimeout(function() { toast.classList.add('hidden'); }, 1600);
+        }).catch(function() {});
+      }
+    }
+    (function init() {
+      var savedTheme = getPref('book_ideas_theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') applyTheme(savedTheme);
+      var savedStyle = getPref('book_ideas_style');
+      applyStyle(savedStyle === 'ft' ? 'ft' : 'economist');
+    })();
+
+  </script>
+</body>
+</html>

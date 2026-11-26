@@ -1,0 +1,118 @@
+name: Daily Book Ideas
+
+on:
+  schedule:
+    # Munich (Europe/Berlin) 06:30 Mon–Fri:
+    # - 04:30 UTC during CEST (summer, UTC+2)
+    # - 05:30 UTC during CET  (winter, UTC+1)
+    # The DST gate step below ensures only the matching season's trigger executes.
+    - cron: "30 4 * * 1-5"
+    - cron: "30 5 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      force_run:
+        description: "Run even if a post for today already exists"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-book-ideas
+  cancel-in-progress: false
+
+jobs:
+  publish-digest:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Berlin
+
+    steps:
+      - name: Check Munich DST schedule gate
+        id: gate
+        run: |
+          TODAY=$(TZ=Europe/Berlin date +%Y-%m-%d)
+          TZ_ABBR=$(TZ=Europe/Berlin date +%Z)
+          echo "today=$TODAY" >> "$GITHUB_OUTPUT"
+          echo "Munich date: $TODAY ($TZ_ABBR), event: ${{ github.event_name }}, cron: ${{ github.event.schedule }}"
+
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            if [[ "${{ github.event.schedule }}" == "30 4 * * 1-5" && "$TZ_ABBR" != "CEST" ]]; then
+              echo "Skipping summer (CEST) cron during $TZ_ABBR."
+              echo "should_run=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [[ "${{ github.event.schedule }}" == "30 5 * * 1-5" && "$TZ_ABBR" != "CET" ]]; then
+              echo "Skipping winter (CET) cron during $TZ_ABBR."
+              echo "should_run=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout repository
+        if: steps.gate.outputs.should_run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Check if today's post already exists
+        id: dedupe
+        if: steps.gate.outputs.should_run == 'true'
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.force_run }}" == "true" ]]; then
+            echo "skip_exists=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          EXISTS=$(python3 -c '
+          import json, sys
+          data = json.load(open("posts.json", encoding="utf-8"))
+          today = sys.argv[1]
+          print("true" if any(p.get("date") == today for p in data.get("posts", [])) else "false")
+          ' "${{ steps.gate.outputs.today }}")
+          echo "skip_exists=$EXISTS" >> "$GITHUB_OUTPUT"
+          if [[ "$EXISTS" == "true" ]]; then
+            echo "A post for ${{ steps.gate.outputs.today }} already exists in posts.json; skipping."
+          fi
+
+      - name: Install Antigravity CLI
+        if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
+        run: |
+          curl -fsSL https://antigravity.google/cli/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Configure Antigravity CLI for Gemini API key
+        if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
+        run: |
+          mkdir -p "$HOME/.gemini/antigravity-cli"
+          printf '{"modelProvider":"gemini"}\n' > "$HOME/.gemini/antigravity-cli/settings.json"
+
+      - name: Generate and fact-check today's book idea
+        if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [[ -z "${GEMINI_API_KEY:-}" ]]; then
+            echo "::error::GEMINI_API_KEY repository secret is not set. Add it in Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+          PROMPT=$(printf "Today's date (Europe/Berlin) is %s.\n\n%s" "${{ steps.gate.outputs.today }}" "$(cat prompts/daily-digest.md)")
+          agy -p "$PROMPT" --dangerously-skip-permissions --print-timeout 15m
+
+      - name: Validate posts.json and rebuild static site
+        if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
+        run: |
+          python3 -m json.tool posts.json > /dev/null
+          python3 scripts/build_site.py
+
+      - name: Commit and push updated digest
+        if: steps.gate.outputs.should_run == 'true' && steps.dedupe.outputs.skip_exists == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add posts.json docs/
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add daily book idea (${{ steps.gate.outputs.today }})"
+            git push
+          fi

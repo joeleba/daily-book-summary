@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-style="economist">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Book Ideas — Reading Log</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+  <style>
+    .container { max-width: 960px; margin: 0 auto; }
+
+    :root {
+      color-scheme: light;
+      --econ-red: #e3120b;
+      --econ-red-soft: rgba(227, 18, 11, 0.08);
+      --econ-blue: #1d4f73;
+      --bg-color: #f8f6f1;
+      --text-color: #141414;
+      --muted-color: #5c5852;
+      --card-bg: #ffffff;
+      --border-color: #ddd8ce;
+      --header-bg: #f1ede4;
+      --details-bg: #faf8f4;
+      --input-bg: #ffffff;
+      --input-border: #c9c3b8;
+      --link-color: #1d4f73;
+      --code-bg: #efeae0;
+      --highlight-ring: #e3120b;
+      --highlight-bg: #fffaf9;
+      --verified-bg: #ebf5ee;
+      --verified-fg: #1b5e34;
+      --chart-grid: #e3ded4;
+      --chart-bench: #8a949e;
+      --serif-font: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+      --sans-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --econ-red: #f03a33;
+      --econ-red-soft: rgba(240, 58, 51, 0.14);
+      --econ-blue: #6aa7cf;
+      --bg-color: #121316;
+      --text-color: #ece9e2;
+      --muted-color: #a39f97;
+      --card-bg: #191b1f;
+      --border-color: #2b2e35;
+      --header-bg: #21242b;
+      --details-bg: #16181c;
+      --input-bg: #15171b;
+      --input-border: #3a3e48;
+      --link-color: #6aa7cf;
+      --code-bg: #23262e;
+      --highlight-ring: #f03a33;
+      --highlight-bg: rgba(240, 58, 51, 0.07);
+      --verified-bg: rgba(46, 160, 67, 0.18);
+      --verified-fg: #85e0a3;
+      --chart-grid: #2c3038;
+      --chart-bench: #6e7781;
+    }
+
+    /* Financial Times (FT) Editorial Theme — Light (Iconic Salmon Paper & Claret) */
+    html[data-style="ft"] {
+      --econ-red: #990f3d;
+      --econ-red-soft: rgba(153, 15, 61, 0.10);
+      --econ-blue: #0d7680;
+      --bg-color: #fff1e5;
+      --text-color: #1a1816;
+      --muted-color: #66605c;
+      --card-bg: #fff7f0;
+      --border-color: #e6d0bd;
+      --header-bg: #f2dfce;
+      --details-bg: #fceee1;
+      --input-bg: #fffaf5;
+      --input-border: #d9bfa9;
+      --link-color: #0d7680;
+      --code-bg: #f2dfce;
+      --highlight-ring: #990f3d;
+      --highlight-bg: #ffece0;
+      --verified-bg: #e3f0ea;
+      --verified-fg: #0b5d4b;
+      --chart-grid: #e3ccb8;
+      --chart-bench: #9e8f84;
+    }
+
+    /* Financial Times (FT) Editorial Theme — Dark (Deep Espresso & Claret) */
+    html[data-style="ft"][data-theme="dark"] {
+      --econ-red: #e05a84;
+      --econ-red-soft: rgba(224, 90, 132, 0.16);
+      --econ-blue: #4db6c0;
+      --bg-color: #181311;
+      --text-color: #f3e8df;
+      --muted-color: #b5a497;
+      --card-bg: #221b18;
+      --border-color: #3a2f2a;
+      --header-bg: #2c231f;
+      --details-bg: #1d1714;
+      --input-bg: #1b1513;
+      --input-border: #4a3c36;
+      --link-color: #4db6c0;
+      --code-bg: #2e2420;
+      --highlight-ring: #e05a84;
+      --highlight-bg: rgba(224, 90, 132, 0.08);
+      --verified-bg: rgba(77, 182, 192, 0.18);
+      --verified-fg: #8ce0e8;
+      --chart-grid: #3b302b;
+      --chart-bench: #8a7b72;
+    }
+
+    .style-switch {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      overflow: hidden;
+      background-color: var(--header-bg);
+    }
+    .style-switch-btn {
+      padding: 5px 9px;
+      border: 0;
+      background: transparent;
+      color: var(--muted-color);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .style-switch-btn:hover {
+      color: var(--text-color);
+    }
+    .style-switch-btn.active {
+      background-color: var(--econ-red);
+      color: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      font-family: var(--sans-font);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      border-top: 4px solid var(--econ-red);
+      padding: 20px 22px 48px;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, p { margin: 0; }
+    .hidden { display: none !important; }
+    .flex { display: flex; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-1 { flex: 1 1 0%; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .justify-between { justify-content: space-between; }
+    .justify-end { justify-content: flex-end; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-1-5 { gap: 0.375rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .min-w-0 { min-width: 0; }
+    .shrink-0 { flex-shrink: 0; }
+    .font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .muted-text { color: var(--muted-color); }
+    .grid-1 { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+
+    a { color: var(--link-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    :focus-visible {
+      outline: 2px solid var(--econ-red);
+      outline-offset: 2px;
+    }
+
+    code {
+      background-color: var(--code-bg);
+      color: var(--text-color);
+      padding: 1px 5px;
+      border-radius: 2px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.86em;
+    }
+
+    .masthead {
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--text-color);
+      margin-bottom: 14px;
+    }
+    .econ-brand-pill {
+      display: inline-block;
+      background-color: var(--econ-red);
+      color: #ffffff;
+      font-family: var(--serif-font);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+    .masthead-title {
+      font-family: var(--serif-font);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .stat-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 9px;
+      border-radius: 2px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      font-size: 12px;
+    }
+    .stat-item strong { font-weight: 700; }
+
+    .toolbar {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      padding: 9px 12px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 6px 10px;
+      border: 1px solid var(--input-border);
+      border-radius: 2px;
+      font-size: 13px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+    input[type="text"]:focus {
+      border-color: var(--econ-red);
+      outline: none;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    .action-btn:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .hash-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      color: var(--econ-red);
+    }
+
+    .toast-pill {
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--verified-bg);
+      color: var(--verified-fg);
+    }
+
+    .tag-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted-color);
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+    }
+    .tag-pill:hover {
+      border-color: var(--econ-red);
+      color: var(--text-color);
+    }
+    .tag-pill.active {
+      background-color: var(--econ-red-soft);
+      color: var(--econ-red);
+      border-color: var(--econ-red);
+    }
+    .pill-count {
+      font-size: 11px;
+      padding: 0 5px;
+      border-radius: 2px;
+      background-color: var(--header-bg);
+      color: var(--muted-color);
+    }
+    .tag-pill.active .pill-count {
+      color: var(--econ-red);
+      font-weight: 700;
+    }
+
+    .wiki-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-top: 2px solid var(--text-color);
+      border-radius: 2px;
+      padding: 15px 18px;
+    }
+    .wiki-card.row-highlight {
+      background-color: var(--highlight-bg);
+      border-top-color: var(--econ-red);
+      outline: 2px solid var(--econ-red);
+      outline-offset: -2px;
+    }
+
+    .post-header { cursor: pointer; }
+    .post-header.static-header { cursor: default; }
+    .kicker-line {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--econ-red);
+      margin-bottom: 4px;
+      padding-left: 22px;
+    }
+    .static-header .kicker-line,
+    .static-header .post-subline,
+    .static-header .post-tags-row {
+      padding-left: 0;
+    }
+    .post-title {
+      font-family: var(--serif-font);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .post-subline {
+      font-size: 13px;
+      margin-top: 4px;
+      padding-left: 22px;
+    }
+    .post-tags-row {
+      margin-top: 8px;
+      padding-left: 22px;
+    }
+    .post-meta-right {
+      font-size: 11.5px;
+      line-height: 1.4;
+      text-align: right;
+    }
+    .post-word-count {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .chevron-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      color: var(--econ-red);
+      transition: transform 0.15s ease;
+      flex-shrink: 0;
+    }
+    .chevron-wrap.open { transform: rotate(90deg); }
+    .chevron-svg { width: 14px; height: 14px; }
+
+    .category-tag {
+      font-size: 11px;
+      padding: 1px 7px;
+      border-radius: 2px;
+      background-color: var(--header-bg);
+      color: var(--muted-color);
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .category-tag:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .verified-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 2px;
+      background-color: var(--verified-bg);
+      color: var(--verified-fg);
+    }
+
+    .more-pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-size: 11px;
+      color: var(--muted-color);
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+    .more-pill:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .post-body {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .markdown-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+    .markdown-body .md-h2, .md-h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--econ-red);
+      margin: 0 0 5px 0;
+    }
+    .markdown-body .md-p { margin: 0; }
+    .markdown-body .md-p + .md-p, .md-p + .md-p { margin-top: 9px; }
+    .idea-section { margin-bottom: 14px; }
+
+    .idea-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 720px) {
+      .idea-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .idea-box {
+      padding: 12px 14px;
+      border-radius: 2px;
+      background-color: var(--details-bg);
+      border: 1px solid var(--border-color);
+      border-top-width: 2.5px;
+    }
+    .idea-box-for { border-top-color: var(--econ-blue); }
+    .idea-box-for .md-h2 { color: var(--econ-blue); }
+    .idea-box-against { border-top-color: var(--econ-red); }
+
+    .quote-block {
+      margin: 0 0 12px 0;
+      padding: 12px 16px;
+      border-left: 3px solid var(--econ-red);
+      background-color: var(--details-bg);
+      font-family: var(--serif-font);
+      font-size: 15px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .quote-block footer {
+      margin-top: 6px;
+      font-family: var(--sans-font);
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted-color);
+    }
+
+    /* Economist Graphic Detail Chart */
+    .econ-chart-box {
+      margin: 0 0 16px 0;
+      padding: 14px 16px 12px;
+      background-color: var(--details-bg);
+      border: 1px solid var(--border-color);
+      border-top: 2px solid var(--text-color);
+    }
+    .econ-chart-bar {
+      width: 28px;
+      height: 4px;
+      background-color: var(--econ-red);
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-family: var(--sans-font);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-color);
+      line-height: 1.25;
+    }
+    .chart-subtitle {
+      font-size: 12px;
+      color: var(--muted-color);
+      margin-top: 2px;
+      margin-bottom: 10px;
+    }
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      color: var(--muted-color);
+    }
+    .chart-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chart-legend-swatch {
+      width: 14px;
+      height: 3px;
+      display: inline-block;
+    }
+    .chart-svg-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .econ-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .chart-grid {
+      stroke: var(--chart-grid);
+      stroke-width: 1;
+      stroke-dasharray: 2 2;
+    }
+    .chart-axis {
+      stroke: var(--muted-color);
+      stroke-width: 1;
+    }
+    .chart-tick {
+      fill: var(--muted-color);
+      font-size: 10.5px;
+      font-family: var(--sans-font);
+    }
+    .chart-label {
+      fill: var(--text-color);
+      font-size: 11.5px;
+      font-weight: 500;
+      font-family: var(--sans-font);
+    }
+    .chart-val {
+      fill: var(--text-color);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: var(--sans-font);
+    }
+    .chart-bar-primary { fill: var(--econ-red); }
+    .chart-bar-bench { fill: var(--chart-bench); }
+    .chart-line-primary { stroke: var(--econ-red); stroke-width: 2.5; fill: none; }
+    .chart-line-secondary { stroke: var(--econ-blue); stroke-width: 2; fill: none; }
+    .chart-dot-primary { fill: var(--econ-red); }
+    .chart-dot-secondary { fill: var(--econ-blue); }
+    .chart-source {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted-color);
+    }
+
+    .post-footer { padding-top: 6px; }
+    .empty-state {
+      padding: 28px 16px;
+      text-align: center;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--muted-color);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Masthead -->
+    <header class="masthead flex flex-wrap justify-between items-center gap-3">
+      <div>
+        <div class="flex items-center gap-2 flex-wrap" style="margin-bottom: 5px;">
+          <span class="econ-brand-pill">Reading Brief</span>
+          <div class="stat-strip" aria-label="Reading log counts">
+            <span class="stat-item">Posts <strong id="hdrPostsCount">6</strong></span>
+            <span class="muted-text">·</span>
+            <span class="stat-item">Books <strong>6</strong></span>
+            <span class="muted-text">·</span>
+            <span class="stat-item">Tags <strong>23</strong></span>
+            <span class="muted-text">·</span>
+            <span class="stat-item">Queued <strong>4</strong></span>
+          </div>
+        </div>
+        <h1 class="masthead-title">Daily Book Ideas</h1>
+        <div style="font-size: 12.5px; margin-top: 3px;" class="muted-text">
+          One distilled, fact-checked idea per weekday · updated <code>2026-11-26</code>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="style-switch" role="group" aria-label="Editorial theme">
+          <button type="button" id="styleBtnEconomist" class="style-switch-btn active" aria-pressed="true" onclick="setStyle('economist')">Economist</button>
+          <button type="button" id="styleBtnFt" class="style-switch-btn" aria-pressed="false" onclick="setStyle('ft')">FT</button>
+        </div>
+        <code id="currentHashBadge" class="hash-badge font-mono" title="Current URL hash">#all</code>
+        <button type="button" class="action-btn" onclick="copyShareLink()" title="Copy current filtered link">Copy Link</button>
+        <div id="copyToast" class="hidden toast-pill" role="status" aria-live="polite">Copied!</div>
+        <button type="button" id="themeToggleBtn" class="action-btn" onclick="toggleTheme()">Dark Mode</button>
+      </div>
+    </header>
+
+    <!-- Search & Controls -->
+    <div class="toolbar flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-2 flex-1">
+        <input type="text" id="searchInput" style="width: 300px; max-width: 100%;" aria-label="Filter posts" placeholder="Filter by book, author, idea, or #tag..." oninput="applyFilters(true)">
+        <button type="button" class="action-btn" onclick="expandCollapseAll(true)">Expand All</button>
+        <button type="button" class="action-btn" onclick="expandCollapseAll(false)">Collapse All</button>
+        <button type="button" class="action-btn" onclick="resetFilters()">Reset</button>
+      </div>
+      <div id="visibleCountLabel" class="muted-text" style="font-size: 12px;">Showing 6 of 6</div>
+    </div>
+
+    <!-- Hashtag Filter Bar -->
+    <div class="tag-filter-bar" role="group" aria-label="Filter by hashtag">
+      <button type="button" class="tag-pill active" data-tag="all" onclick="setTagFilter('all')">
+        #all <span class="pill-count">6</span>
+      </button>
+      <button type="button" class="tag-pill" data-tag="#geopolitics" onclick="setTagFilter(this.getAttribute('data-tag'))">#geopolitics <span class="pill-count">4</span></button>
+      <button type="button" class="tag-pill" data-tag="#macroeconomics" onclick="setTagFilter(this.getAttribute('data-tag'))">#macroeconomics <span class="pill-count">3</span></button>
+      <button type="button" class="tag-pill" data-tag="#strategy" onclick="setTagFilter(this.getAttribute('data-tag'))">#strategy <span class="pill-count">3</span></button>
+      <button type="button" class="tag-pill" data-tag="#arbitrage" onclick="setTagFilter(this.getAttribute('data-tag'))">#arbitrage <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#business-strategy" onclick="setTagFilter(this.getAttribute('data-tag'))">#business-strategy <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#commodities" onclick="setTagFilter(this.getAttribute('data-tag'))">#commodities <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#ft-2012-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2012-shortlist <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#ft-2019-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2019-shortlist <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#ft-2021-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2021-shortlist <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#ft-2022-winner" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2022-winner <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#ft-2023-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2023-shortlist <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#ft-2025-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2025-shortlist <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#generalists" onclick="setTagFilter(this.getAttribute('data-tag'))">#generalists <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#infrastructure" onclick="setTagFilter(this.getAttribute('data-tag'))">#infrastructure <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#innovation" onclick="setTagFilter(this.getAttribute('data-tag'))">#innovation <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#institutions" onclick="setTagFilter(this.getAttribute('data-tag'))">#institutions <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#modularity" onclick="setTagFilter(this.getAttribute('data-tag'))">#modularity <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#problem-solving" onclick="setTagFilter(this.getAttribute('data-tag'))">#problem-solving <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#project-management" onclick="setTagFilter(this.getAttribute('data-tag'))">#project-management <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#risk" onclick="setTagFilter(this.getAttribute('data-tag'))">#risk <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#semiconductors" onclick="setTagFilter(this.getAttribute('data-tag'))">#semiconductors <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#state-capacity" onclick="setTagFilter(this.getAttribute('data-tag'))">#state-capacity <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#supply-chains" onclick="setTagFilter(this.getAttribute('data-tag'))">#supply-chains <span class="pill-count">1</span></button>
+    </div>
+
+    <!-- Posts Feed -->
+    <main id="postsContainer" class="grid-1">
+      <article id="post-2026-11-26-inclusive-extractive-institutions" class="wiki-card post-card" data-post-id="2026-11-26-inclusive-extractive-institutions" data-tags="#macroeconomics,#geopolitics,#institutions,#strategy,#ft-2012-shortlist" data-book="Why Nations Fail: The Origins of Power, Prosperity, and Poverty" data-search="2026-11-26 inclusive institutions—not geography or culture—make nations rich why nations fail: the origins of power, prosperity, and poverty daron acemoglu and james a. robinson ft 2012 shortlist #macroeconomics #geopolitics #institutions #strategy #ft-2012-shortlist why are some countries rich and others poor? standard dinner-table explanations blame geography (tropics versus temperate zones), climate, natural resources, or national culture. in why nations fail—building on institutional research that helped earn daron acemoglu and james a. robinson (with simon johnson) the 2024 nobel memorial prize in economic sciences—the authors argue those stories get causality backward: long-run prosperity is decided by human-made institutions.
+
+acemoglu and robinson divide societies into two types. inclusive economic institutions protect property rights, enforce impartial contracts, and let anyone start a business or patent an idea, backed by inclusive political institutions that distribute power broadly with checks and balances. extractive institutions concentrate power in a narrow elite that rigs markets, protects monopolies, and skims wealth from the majority. because elites fear &quot;creative destruction&quot;—new technologies and upstarts that can topple incumbents—extractive regimes actively block innovation even when it would expand the whole economy. chapter 1 (&quot;so close and yet so different&quot;) opens on a single border fence cutting through the desert city of nogales. north of the wire sits nogales, arizona; just steps south lies nogales, sonora. both halves share the exact same geography, climate, disease environment, and largely the same cultural heritage and ancestry.
+
+yet the gap across the fence is stark. on the authors&#x27; 2012 figures, the average household in nogales, arizona earns about $30,000 a year, most adults hold a high school diploma, residents rely on public sanitation, law and order, and medicare after 65, and life expectancy is high. steps away in nogales, sonora, average household income is roughly one-third as large, most adults lack a high school degree, many teenagers are out of school, infant mortality is higher, and crime and corruption weigh on daily commerce. what changed at the fence was not the soil or the people—it was the institutional rulebook: u.s. property rights, courts, and electoral accountability versus mexico&#x27;s legacy of colonial monopolies, weak rule of law, and politically entrenched elites. centering prosperity on institutions explains sudden historical divergences that geography and culture cannot. the korean peninsula shares one climate, language, and centuries of common history, yet after its post-1945 partition, south korea built market-oriented institutions (and later pluralistic democracy) while north korea built a closed, extractive command state—producing a staggering gap in living standards within two generations.
+
+for mba leaders and capital allocators, the lesson extends straight to emerging markets and corporate strategy: headline growth under crony rules rarely compounds into frontier innovation because insecure property rights and political favoritism choke off broad entrepreneurship. even in 17th-century england, acemoglu and robinson show, it took the glorious revolution of 1688 to curb royal monopolies, empower parliament, and unlock the industrial revolution. critics such as jeffrey sachs (in a sharp 2012 foreign affairs review) and francis fukuyama argue that why nations fail turns a vital insight into a monocausal dogma. first, china&#x27;s rise poses an awkward puzzle: under an authoritarian, politically &quot;extractive&quot; communist party, china lifted hundreds of millions out of poverty and scaled world-class infrastructure and frontier manufacturing. acemoglu and robinson counter that authoritarian &quot;catch-up growth&quot; eventually stalls without political pluralism—yet china has sustained industrial upgrading longer than early institutionalists expected.
+
+skeptics also note that dismissing geography and administrative state capacity understates real traps: landlocked nations without navigable ports, severe malaria burdens, or weak bureaucracies face steep headwinds that formal laws alone cannot erase. moreover, east asian tigers—such as 1960s south korea before democratization, and high-income singapore—built strong, centralized state capacity and industrial momentum without western-style multiparty pluralism. nations fail today because their extractive economic institutions do not create the incentives needed for people to save, invest, and innovate. extractive political institutions support these economic institutions by cementing the power of those who benefit from the extraction.">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="true" aria-controls="body-2026-11-26-inclusive-extractive-institutions" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">MACROECONOMICS · FT 2012 SHORTLIST</div>
+            <div class="flex items-center gap-2">
+              <span id="arrow-2026-11-26-inclusive-extractive-institutions" class="chevron-wrap open">
+                <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <h2 class="post-title">Inclusive institutions—not geography or culture—make nations rich</h2>
+            </div>
+            <div class="post-subline muted-text">
+              <span><strong>Why Nations Fail: The Origins of Power, Prosperity, and Poverty</strong> · Daron Acemoglu and James A. Robinson</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row" onclick="event.stopPropagation()">
+              <button type="button" class="category-tag" data-tag="#macroeconomics" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #macroeconomics">#macroeconomics</button> <button type="button" class="category-tag" data-tag="#geopolitics" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #geopolitics">#geopolitics</button> <button type="button" class="category-tag" data-tag="#institutions" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #institutions">#institutions</button> <button type="button" class="category-tag" data-tag="#strategy" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #strategy">#strategy</button> <button type="button" class="category-tag" data-tag="#ft-2012-shortlist" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #ft-2012-shortlist">#ft-2012-shortlist</button>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1">
+              <span class="font-mono">2026-11-26</span>
+              <a class="more-pill" href="entries/2026-11-26-inclusive-extractive-institutions.html" title="Open standalone entry page">Entry ↗</a>
+              <button type="button" class="more-pill" onclick="copyPostHashLink(this.closest('.post-card').getAttribute('data-post-id'), event)" title="Copy deep link (#post=2026-11-26-inclusive-extractive-institutions)">#</button>
+            </div>
+            <div class="post-word-count">618 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-26-inclusive-extractive-institutions" class="markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Why are some countries rich and others poor? Standard dinner-table explanations blame geography (tropics versus temperate zones), climate, natural resources, or national culture. In Why Nations Fail—building on institutional research that helped earn Daron Acemoglu and James A. Robinson (with Simon Johnson) the 2024 Nobel Memorial Prize in Economic Sciences—the authors argue those stories get causality backward: long-run prosperity is decided by human-made institutions.</p>
+<p class="md-p">Acemoglu and Robinson divide societies into two types. Inclusive economic institutions protect property rights, enforce impartial contracts, and let anyone start a business or patent an idea, backed by inclusive political institutions that distribute power broadly with checks and balances. Extractive institutions concentrate power in a narrow elite that rigs markets, protects monopolies, and skims wealth from the majority. Because elites fear &quot;creative destruction&quot;—new technologies and upstarts that can topple incumbents—extractive regimes actively block innovation even when it would expand the whole economy.</p>
+          </div>
+
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">Chapter 1 (&quot;So Close and Yet So Different&quot;) opens on a single border fence cutting through the desert city of Nogales. North of the wire sits Nogales, Arizona; just steps south lies Nogales, Sonora. Both halves share the exact same geography, climate, disease environment, and largely the same cultural heritage and ancestry.</p>
+<p class="md-p">Yet the gap across the fence is stark. On the authors&#x27; 2012 figures, the average household in Nogales, Arizona earns about $30,000 a year, most adults hold a high school diploma, residents rely on public sanitation, law and order, and Medicare after 65, and life expectancy is high. Steps away in Nogales, Sonora, average household income is roughly one-third as large, most adults lack a high school degree, many teenagers are out of school, infant mortality is higher, and crime and corruption weigh on daily commerce. What changed at the fence was not the soil or the people—it was the institutional rulebook: U.S. property rights, courts, and electoral accountability versus Mexico&#x27;s legacy of colonial monopolies, weak rule of law, and politically entrenched elites.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Centering prosperity on institutions explains sudden historical divergences that geography and culture cannot. The Korean Peninsula shares one climate, language, and centuries of common history, yet after its post-1945 partition, South Korea built market-oriented institutions (and later pluralistic democracy) while North Korea built a closed, extractive command state—producing a staggering gap in living standards within two generations.</p>
+<p class="md-p">For MBA leaders and capital allocators, the lesson extends straight to emerging markets and corporate strategy: headline growth under crony rules rarely compounds into frontier innovation because insecure property rights and political favoritism choke off broad entrepreneurship. Even in 17th-century England, Acemoglu and Robinson show, it took the Glorious Revolution of 1688 to curb royal monopolies, empower Parliament, and unlock the Industrial Revolution.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Critics such as Jeffrey Sachs (in a sharp 2012 Foreign Affairs review) and Francis Fukuyama argue that Why Nations Fail turns a vital insight into a monocausal dogma. First, China&#x27;s rise poses an awkward puzzle: under an authoritarian, politically &quot;extractive&quot; Communist Party, China lifted hundreds of millions out of poverty and scaled world-class infrastructure and frontier manufacturing. Acemoglu and Robinson counter that authoritarian &quot;catch-up growth&quot; eventually stalls without political pluralism—yet China has sustained industrial upgrading longer than early institutionalists expected.</p>
+<p class="md-p">Skeptics also note that dismissing geography and administrative state capacity understates real traps: landlocked nations without navigable ports, severe malaria burdens, or weak bureaucracies face steep headwinds that formal laws alone cannot erase. Moreover, East Asian tigers—such as 1960s South Korea before democratization, and high-income Singapore—built strong, centralized state capacity and industrial momentum without Western-style multiparty pluralism.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“Nations fail today because their extractive economic institutions do not create the incentives needed for people to save, invest, and innovate. Extractive political institutions support these economic institutions by cementing the power of those who benefit from the extraction.”</p>
+            <footer>— Daron Acemoglu and James A. Robinson, Why Nations Fail (2012), Chapter 13</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-between gap-2 muted-text">
+            <span><span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span></span>
+            <span class="font-mono" style="font-size: 11px;">#2026-11-26-inclusive-extractive-institutions</span>
+          </div>
+        </div>
+      </article>
+      <article id="post-2026-11-25-engineering-state-lawyerly-society" class="wiki-card post-card" data-post-id="2026-11-25-engineering-state-lawyerly-society" data-tags="#geopolitics,#macroeconomics,#state-capacity,#infrastructure,#ft-2025-shortlist" data-book="Breakneck: China&#x27;s Quest to Engineer the Future" data-search="2026-11-25 why engineering states outbuild lawyerly societies breakneck: china&#x27;s quest to engineer the future dan wang ft 2025 shortlist #geopolitics #macroeconomics #state-capacity #infrastructure #ft-2025-shortlist most commentary reduces u.s.–china rivalry to democracy versus authoritarianism, or capitalism versus state socialism. in breakneck, technology analyst dan wang proposes a sharper institutional lens: china is an &quot;engineering state,&quot; whereas the united states has become a &quot;lawyerly society.&quot;
+
+in an engineering state, leaders trained in technical disciplines treat the entire nation—from bridges and battery factories to demographics—as a physical system to optimize and build at scale. in a lawyerly society, elites trained in law prize procedure, rights, and litigation, wielding rules less to construct than to constrain. neither model holds a monopoly on competence: engineering states deliver tangible physical abundance at astonishing speed, yet treat citizens as statistical inputs and inflict severe harm when unconstrained; lawyerly societies protect individual liberty and check abuses, yet let procedural vetoes paralyze basic public works. in 2008, both china and california launched ambitious ~800-mile high-speed rail efforts. china broke ground on the beijing–shanghai high-speed railway in april 2008 and opened it in june 2011—taking just over three years at a cost of roughly $36 billion (per wang), and carrying 1.35 billion passengers over its first decade.
+
+in november 2008, california voters approved proposition 1a for a comparable ~800-mile statewide network (anchoring a ~500-mile san francisco–los angeles phase 1 spine). nearly two decades on, entangled in environmental litigation, fragmented permitting, and local veto points, california still has no operational high-speed rail service while phase 1 cost estimates have climbed as high as $128 billion. wang notes that china&#x27;s construction bias reaches even its poorest interior: mountainous guizhou province built towering gorge bridges and expressways at breakneck pace, while u.s. cities struggle to permit neighborhood bike lanes. viewing statecraft through elite training illuminates industrial dynamics that ideology alone misses. in 2002, eight of the nine members of china&#x27;s politburo standing committee held engineering degrees—including general secretary hu jintao in hydraulic engineering, alongside geologist-trained premier wen jiabao—and later leader xi jinping studied chemical engineering. by contrast, legal training dominates washington: roughly half the u.s. senate and a third of the house hold law degrees, and every democratic presidential and vice-presidential nominee from 1984 to 2020 attended law school.
+
+an engineering mindset excels at mobilizing capital, supply chains, and talent around physical transformation—explaining how china scaled solar panels, electric vehicles, and grid capacity so rapidly, and why america&#x27;s own postwar engineering era gave way after 1970 to procedural bottlenecks that now stall clean energy transmission and housing. treating a nation like an engineering problem turns catastrophic when leaders apply the same sledgehammer to human lives. as wang documents in chapters on the one-child policy and zero-covid lockdowns, an engineering state unconstrained by due process or citizen consent views people as aggregate variables—enforcing coercive birth limits and sealing whole cities with rigid, top-down force.
+
+nor is legalism purely obstructionist. america&#x27;s post-1960s procedural turn—sparked by highway-bulldozed neighborhoods, polluted waterways, and unchecked corporate power—established vital environmental and civil-rights guardrails. moreover, building at any cost creates steep economic hangovers: debt-laden provinces like guizhou are dotted with underutilized concrete and bridges, while america&#x27;s rule-of-law openness still anchors global leadership in software and biotech. the starkest contrast between the two countries is the competition that will define the twenty-first century: an american elite, made up of mostly lawyers, excelling at obstruction, versus a chinese technocratic class, made up of mostly engineers, that excels at construction.">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-2026-11-25-engineering-state-lawyerly-society" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">GEOPOLITICS · FT 2025 SHORTLIST</div>
+            <div class="flex items-center gap-2">
+              <span id="arrow-2026-11-25-engineering-state-lawyerly-society" class="chevron-wrap">
+                <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <h2 class="post-title">Why engineering states outbuild lawyerly societies</h2>
+            </div>
+            <div class="post-subline muted-text">
+              <span><strong>Breakneck: China&#x27;s Quest to Engineer the Future</strong> · Dan Wang</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row" onclick="event.stopPropagation()">
+              <button type="button" class="category-tag" data-tag="#geopolitics" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #geopolitics">#geopolitics</button> <button type="button" class="category-tag" data-tag="#macroeconomics" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #macroeconomics">#macroeconomics</button> <button type="button" class="category-tag" data-tag="#state-capacity" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #state-capacity">#state-capacity</button> <button type="button" class="category-tag" data-tag="#infrastructure" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #infrastructure">#infrastructure</button> <button type="button" class="category-tag" data-tag="#ft-2025-shortlist" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #ft-2025-shortlist">#ft-2025-shortlist</button>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1">
+              <span class="font-mono">2026-11-25</span>
+              <a class="more-pill" href="entries/2026-11-25-engineering-state-lawyerly-society.html" title="Open standalone entry page">Entry ↗</a>
+              <button type="button" class="more-pill" onclick="copyPostHashLink(this.closest('.post-card').getAttribute('data-post-id'), event)" title="Copy deep link (#post=2026-11-25-engineering-state-lawyerly-society)">#</button>
+            </div>
+            <div class="post-word-count">552 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-25-engineering-state-lawyerly-society" class="hidden markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Most commentary reduces U.S.–China rivalry to democracy versus authoritarianism, or capitalism versus state socialism. In Breakneck, technology analyst Dan Wang proposes a sharper institutional lens: China is an &quot;engineering state,&quot; whereas the United States has become a &quot;lawyerly society.&quot;</p>
+<p class="md-p">In an engineering state, leaders trained in technical disciplines treat the entire nation—from bridges and battery factories to demographics—as a physical system to optimize and build at scale. In a lawyerly society, elites trained in law prize procedure, rights, and litigation, wielding rules less to construct than to constrain. Neither model holds a monopoly on competence: engineering states deliver tangible physical abundance at astonishing speed, yet treat citizens as statistical inputs and inflict severe harm when unconstrained; lawyerly societies protect individual liberty and check abuses, yet let procedural vetoes paralyze basic public works.</p>
+          </div>
+
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In 2008, both China and California launched ambitious ~800-mile high-speed rail efforts. China broke ground on the Beijing–Shanghai High-Speed Railway in April 2008 and opened it in June 2011—taking just over three years at a cost of roughly $36 billion (per Wang), and carrying 1.35 billion passengers over its first decade.</p>
+<p class="md-p">In November 2008, California voters approved Proposition 1A for a comparable ~800-mile statewide network (anchoring a ~500-mile San Francisco–Los Angeles Phase 1 spine). Nearly two decades on, entangled in environmental litigation, fragmented permitting, and local veto points, California still has no operational high-speed rail service while Phase 1 cost estimates have climbed as high as $128 billion. Wang notes that China&#x27;s construction bias reaches even its poorest interior: mountainous Guizhou province built towering gorge bridges and expressways at breakneck pace, while U.S. cities struggle to permit neighborhood bike lanes.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Viewing statecraft through elite training illuminates industrial dynamics that ideology alone misses. In 2002, eight of the nine members of China&#x27;s Politburo Standing Committee held engineering degrees—including General Secretary Hu Jintao in hydraulic engineering, alongside geologist-trained Premier Wen Jiabao—and later leader Xi Jinping studied chemical engineering. By contrast, legal training dominates Washington: roughly half the U.S. Senate and a third of the House hold law degrees, and every Democratic presidential and vice-presidential nominee from 1984 to 2020 attended law school.</p>
+<p class="md-p">An engineering mindset excels at mobilizing capital, supply chains, and talent around physical transformation—explaining how China scaled solar panels, electric vehicles, and grid capacity so rapidly, and why America&#x27;s own postwar engineering era gave way after 1970 to procedural bottlenecks that now stall clean energy transmission and housing.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Treating a nation like an engineering problem turns catastrophic when leaders apply the same sledgehammer to human lives. As Wang documents in chapters on the one-child policy and zero-Covid lockdowns, an engineering state unconstrained by due process or citizen consent views people as aggregate variables—enforcing coercive birth limits and sealing whole cities with rigid, top-down force.</p>
+<p class="md-p">Nor is legalism purely obstructionist. America&#x27;s post-1960s procedural turn—sparked by highway-bulldozed neighborhoods, polluted waterways, and unchecked corporate power—established vital environmental and civil-rights guardrails. Moreover, building at any cost creates steep economic hangovers: debt-laden provinces like Guizhou are dotted with underutilized concrete and bridges, while America&#x27;s rule-of-law openness still anchors global leadership in software and biotech.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“The starkest contrast between the two countries is the competition that will define the twenty-first century: an American elite, made up of mostly lawyers, excelling at obstruction, versus a Chinese technocratic class, made up of mostly engineers, that excels at construction.”</p>
+            <footer>— Dan Wang, Breakneck (2025), Introduction</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-between gap-2 muted-text">
+            <span><span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span></span>
+            <span class="font-mono" style="font-size: 11px;">#2026-11-25-engineering-state-lawyerly-society</span>
+          </div>
+        </div>
+      </article>
+      <article id="post-2026-11-24-world-for-sale-shadow-brokers" class="wiki-card post-card" data-post-id="2026-11-24-world-for-sale-shadow-brokers" data-tags="#geopolitics,#commodities,#macroeconomics,#arbitrage,#ft-2021-shortlist" data-book="The World for Sale: Money, Power, and the Traders Who Barter the Earth&#x27;s Resources" data-search="2026-11-24 shadow commodity traders act as markets&#x27; visible hand the world for sale: money, power, and the traders who barter the earth&#x27;s resources javier blas and jack farchy ft 2021 shortlist #geopolitics #commodities #macroeconomics #arbitrage #ft-2021-shortlist global capitalism runs on physical goods—crude oil, copper, cobalt, and wheat—yet almost no consumer knows the companies that actually move them. in the world for sale, journalists javier blas and jack farchy examine how a handful of independent commodity trading houses, led by vitol, glencore, trafigura, and cargill, quietly became indispensable gears of the world economy.
+
+unlike oil majors or mining giants, pure-play traders rarely care whether commodity prices rise or fall. instead, they are master arbitrageurs who profit from price disparities across geography, product quality, and time—buying cheap surplus in one port, blending grades on ships at sea, or storing cargoes in supertankers until futures prices justify delivery. because physical shortages and geopolitical shocks widen those spreads, market turmoil is their growth engine. operating largely outside public equity markets, these firms act simultaneously as logistics operators, shadow bankers, and informal diplomats wherever state supply chains break down. in early 2011, during the libyan civil war, rebel forces in benghazi held vast oil reserves in eastern libya yet faced a crippling paradox: they were running out of gasoline, diesel, and fuel oil because muammar gaddafi&#x27;s loyalists still held the country&#x27;s main operational refineries. with conventional banks unwilling to extend credit to an unrecognized rebel council, western governments struggled to keep rebel-held cities powered and vehicles moving.
+
+into the breach stepped ian taylor, the chief executive of vitol, the world&#x27;s largest independent oil trader. flying into benghazi aboard a small private jet—with a nato drone chaperoning a thousand feet below—taylor negotiated directly with rebel leaders and agreed on a handshake to supply roughly $1 billion worth of refined fuel. vitol effectively acted as both lifeline and lender, deferring repayment until the rebels won and could settle the tab in crude oil. even after gaddafi&#x27;s forces blew up a key pipeline, vitol honored the deal and was repaid once the regime fell. independent commodity traders solve a coordination problem that neither governments nor risk-averse multinationals handle well: matching physical supply to acute scarcity under extreme uncertainty. when war, sanctions, or sudden industrial surges—such as china&#x27;s 2000s urbanization boom—fracture normal trade routes, traders step in with chartered ships, storage tanks, and rapid credit lines, preventing local shortages from cascading into broader supply breakdowns.
+
+that arbitrage function creates staggering value when markets tighten. as blas and farchy document, in the decade to 2011, the top three trading houses in oil, metals, and agriculture—vitol, glencore, and cargill—earned a combined $76.3 billion in net income, ten times their 1990s profits and more than either apple or coca-cola made over the same period. concentrating global resource flows inside lightly regulated private partnerships carries steep geopolitical and governance costs. because traders profit from friction and historically operated in hubs with minimal disclosure, their willingness to finance cash-strapped governments—through oil-backed prepayment loans—can blunt diplomatic sanctions, prolong civil conflicts, and shield authoritarian regimes from accountability.
+
+the same secrecy that lets traders move fast also breeds systemic corruption risks. vitol paid roughly $164 million in 2020 and glencore agreed to pay roughly $1.5 billion globally in 2022 to settle u.s., uk, and brazilian charges involving foreign bribery and market manipulation. moreover, since glencore&#x27;s 2011 ipo and the rise of state-backed trading desks, critics note that tighter scrutiny has narrowed the old era of unchallenged super-profits. by exploiting these price differences, they help to make markets more efficient, directing resources to their highest value uses in response to price signals. they are, in the words of one academic, the visible manifestation of adam smith&#x27;s invisible hand.">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-2026-11-24-world-for-sale-shadow-brokers" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">GEOPOLITICS · FT 2021 SHORTLIST</div>
+            <div class="flex items-center gap-2">
+              <span id="arrow-2026-11-24-world-for-sale-shadow-brokers" class="chevron-wrap">
+                <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <h2 class="post-title">Shadow commodity traders act as markets&#x27; visible hand</h2>
+            </div>
+            <div class="post-subline muted-text">
+              <span><strong>The World for Sale: Money, Power, and the Traders Who Barter the Earth&#x27;s Resources</strong> · Javier Blas and Jack Farchy</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row" onclick="event.stopPropagation()">
+              <button type="button" class="category-tag" data-tag="#geopolitics" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #geopolitics">#geopolitics</button> <button type="button" class="category-tag" data-tag="#commodities" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #commodities">#commodities</button> <button type="button" class="category-tag" data-tag="#macroeconomics" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #macroeconomics">#macroeconomics</button> <button type="button" class="category-tag" data-tag="#arbitrage" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #arbitrage">#arbitrage</button> <button type="button" class="category-tag" data-tag="#ft-2021-shortlist" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #ft-2021-shortlist">#ft-2021-shortlist</button>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1">
+              <span class="font-mono">2026-11-24</span>
+              <a class="more-pill" href="entries/2026-11-24-world-for-sale-shadow-brokers.html" title="Open standalone entry page">Entry ↗</a>
+              <button type="button" class="more-pill" onclick="copyPostHashLink(this.closest('.post-card').getAttribute('data-post-id'), event)" title="Copy deep link (#post=2026-11-24-world-for-sale-shadow-brokers)">#</button>
+            </div>
+            <div class="post-word-count">584 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-24-world-for-sale-shadow-brokers" class="hidden markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Global capitalism runs on physical goods—crude oil, copper, cobalt, and wheat—yet almost no consumer knows the companies that actually move them. In The World for Sale, journalists Javier Blas and Jack Farchy examine how a handful of independent commodity trading houses, led by Vitol, Glencore, Trafigura, and Cargill, quietly became indispensable gears of the world economy.</p>
+<p class="md-p">Unlike oil majors or mining giants, pure-play traders rarely care whether commodity prices rise or fall. Instead, they are master arbitrageurs who profit from price disparities across geography, product quality, and time—buying cheap surplus in one port, blending grades on ships at sea, or storing cargoes in supertankers until futures prices justify delivery. Because physical shortages and geopolitical shocks widen those spreads, market turmoil is their growth engine. Operating largely outside public equity markets, these firms act simultaneously as logistics operators, shadow bankers, and informal diplomats wherever state supply chains break down.</p>
+          </div>
+
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In early 2011, during the Libyan Civil War, rebel forces in Benghazi held vast oil reserves in eastern Libya yet faced a crippling paradox: they were running out of gasoline, diesel, and fuel oil because Muammar Gaddafi&#x27;s loyalists still held the country&#x27;s main operational refineries. With conventional banks unwilling to extend credit to an unrecognized rebel council, Western governments struggled to keep rebel-held cities powered and vehicles moving.</p>
+<p class="md-p">Into the breach stepped Ian Taylor, the chief executive of Vitol, the world&#x27;s largest independent oil trader. Flying into Benghazi aboard a small private jet—with a NATO drone chaperoning a thousand feet below—Taylor negotiated directly with rebel leaders and agreed on a handshake to supply roughly $1 billion worth of refined fuel. Vitol effectively acted as both lifeline and lender, deferring repayment until the rebels won and could settle the tab in crude oil. Even after Gaddafi&#x27;s forces blew up a key pipeline, Vitol honored the deal and was repaid once the regime fell.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Independent commodity traders solve a coordination problem that neither governments nor risk-averse multinationals handle well: matching physical supply to acute scarcity under extreme uncertainty. When war, sanctions, or sudden industrial surges—such as China&#x27;s 2000s urbanization boom—fracture normal trade routes, traders step in with chartered ships, storage tanks, and rapid credit lines, preventing local shortages from cascading into broader supply breakdowns.</p>
+<p class="md-p">That arbitrage function creates staggering value when markets tighten. As Blas and Farchy document, in the decade to 2011, the top three trading houses in oil, metals, and agriculture—Vitol, Glencore, and Cargill—earned a combined $76.3 billion in net income, ten times their 1990s profits and more than either Apple or Coca-Cola made over the same period.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Concentrating global resource flows inside lightly regulated private partnerships carries steep geopolitical and governance costs. Because traders profit from friction and historically operated in hubs with minimal disclosure, their willingness to finance cash-strapped governments—through oil-backed prepayment loans—can blunt diplomatic sanctions, prolong civil conflicts, and shield authoritarian regimes from accountability.</p>
+<p class="md-p">The same secrecy that lets traders move fast also breeds systemic corruption risks. Vitol paid roughly $164 million in 2020 and Glencore agreed to pay roughly $1.5 billion globally in 2022 to settle U.S., UK, and Brazilian charges involving foreign bribery and market manipulation. Moreover, since Glencore&#x27;s 2011 IPO and the rise of state-backed trading desks, critics note that tighter scrutiny has narrowed the old era of unchallenged super-profits.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“By exploiting these price differences, they help to make markets more efficient, directing resources to their highest value uses in response to price signals. They are, in the words of one academic, the visible manifestation of Adam Smith&#x27;s invisible hand.”</p>
+            <footer>— Javier Blas and Jack Farchy, The World for Sale (2021), Introduction</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-between gap-2 muted-text">
+            <span><span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span></span>
+            <span class="font-mono" style="font-size: 11px;">#2026-11-24-world-for-sale-shadow-brokers</span>
+          </div>
+        </div>
+      </article>
+      <article id="post-2026-11-23-think-slow-modularity" class="wiki-card post-card" data-post-id="2026-11-23-think-slow-modularity" data-tags="#strategy,#project-management,#modularity,#risk,#ft-2023-shortlist" data-book="How Big Things Get Done: The Surprising Factors That Determine the Fate of Every Project, from Home Renovations to Space Exploration, and Everything in Between" data-search="2026-11-23 think slow, act fast—and build from modular blocks how big things get done: the surprising factors that determine the fate of every project, from home renovations to space exploration, and everything in between bent flyvbjerg and dan gardner ft 2023 shortlist #strategy #project-management #modularity #risk #ft-2023-shortlist most large endeavors fail long before execution begins—they start wrong. drawing on a global database of over 16,000 projects across 136 countries and more than 20 fields, bent flyvbjerg and dan gardner uncover what they call the &quot;iron law of megaprojects&quot;: over budget, over time, under benefits, over and over again. only 8.5% of projects finish on budget and on time, and just 0.5% deliver on budget, schedule, and promised benefits. worse, cost overruns are &quot;fat-tailed,&quot; meaning extreme blowouts happen far more often than standard risk models expect.
+
+to beat the iron law, flyvbjerg and gardner prescribe two interlocking rules: &quot;think slow, act fast&quot; and &quot;find your lego.&quot; planning is cheap and safe, whereas active delivery burns capital daily and opens what the authors call the &quot;window of doom&quot;—exposure to political, market, and supply shocks. rigorous upfront simulation and design let teams compress delivery into a fast, disciplined sprint, while breaking bespoke megaprojects into standardized, repeatable modules turns one-off gambles into steep learning curves. in 1929, developers john raskob and al smith set out to build the empire state building—then the world&#x27;s tallest skyscraper—on a brutal schedule. rather than rushing crews onto the site to improvise, architects shreve, lamb &amp; harmon and builders starrett brothers &amp; eken spent months mapping every structural detail on paper, standardizing floor plans, steel beams, exterior stone panels, and window frames into repeatable units.
+
+once tower construction began in march 1930, the steel frame rose averaging roughly 4.5 stories a week, and the skyscraper went from initial sketch to completion in 21 months (about 13 months of main tower construction). even with depression-era price deflation lending a tailwind, disciplined upfront design paid off: budgeted at $50 million, the tower opened ahead of schedule at roughly $41 million—about 17–18% under budget. treating planning as cheap experimentation and delivery as a fast assembly line directly attacks fat-tailed risk. iterating on paper, in software models, or with pilot modules costs pennies compared to fixing mistakes mid-build, when crews sit idle and financing charges compound.
+
+flyvbjerg&#x27;s appendix a data confirms the payoff of repeatability: modular technologies such as solar farms (2% suffering 50%+ overruns, +1% mean overrun) and wind power (7% in the tail, +13% mean) stay close to budget, whereas bespoke nuclear plants (55% in the tail, +120% mean) and olympic games (76% in the tail, +157% mean) routinely spiral. excessive upfront planning can slide into analysis paralysis when user needs or underlying technologies shift faster than a static blueprint can anticipate. in fast-moving software or exploratory r&amp;d, spending a year perfecting specifications before shipping risks building the wrong product cleanly.
+
+modularity also has real physical and strategic limits. not every landmark or frontier infrastructure system can be stamped from identical lego bricks—and occasionally, as with the sydney opera house (roughly 1,400% over budget and 10 years late, yet a unesco world heritage icon), society judges a bespoke creation by cultural breakthroughs that cost-benefit tables miss. put enormous care and effort into planning to ensure that delivery is smooth and swift. think slow, act fast: that&#x27;s the secret of success.">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-2026-11-23-think-slow-modularity" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">STRATEGY · FT 2023 SHORTLIST</div>
+            <div class="flex items-center gap-2">
+              <span id="arrow-2026-11-23-think-slow-modularity" class="chevron-wrap">
+                <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <h2 class="post-title">Think slow, act fast—and build from modular blocks</h2>
+            </div>
+            <div class="post-subline muted-text">
+              <span><strong>How Big Things Get Done: The Surprising Factors That Determine the Fate of Every Project, from Home Renovations to Space Exploration, and Everything in Between</strong> · Bent Flyvbjerg and Dan Gardner</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row" onclick="event.stopPropagation()">
+              <button type="button" class="category-tag" data-tag="#strategy" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #strategy">#strategy</button> <button type="button" class="category-tag" data-tag="#project-management" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #project-management">#project-management</button> <button type="button" class="category-tag" data-tag="#modularity" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #modularity">#modularity</button> <button type="button" class="category-tag" data-tag="#risk" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #risk">#risk</button> <button type="button" class="category-tag" data-tag="#ft-2023-shortlist" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #ft-2023-shortlist">#ft-2023-shortlist</button>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1">
+              <span class="font-mono">2026-11-23</span>
+              <a class="more-pill" href="entries/2026-11-23-think-slow-modularity.html" title="Open standalone entry page">Entry ↗</a>
+              <button type="button" class="more-pill" onclick="copyPostHashLink(this.closest('.post-card').getAttribute('data-post-id'), event)" title="Copy deep link (#post=2026-11-23-think-slow-modularity)">#</button>
+            </div>
+            <div class="post-word-count">512 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-23-think-slow-modularity" class="hidden markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Most large endeavors fail long before execution begins—they start wrong. Drawing on a global database of over 16,000 projects across 136 countries and more than 20 fields, Bent Flyvbjerg and Dan Gardner uncover what they call the &quot;Iron Law of Megaprojects&quot;: over budget, over time, under benefits, over and over again. Only 8.5% of projects finish on budget and on time, and just 0.5% deliver on budget, schedule, and promised benefits. Worse, cost overruns are &quot;fat-tailed,&quot; meaning extreme blowouts happen far more often than standard risk models expect.</p>
+<p class="md-p">To beat the Iron Law, Flyvbjerg and Gardner prescribe two interlocking rules: &quot;think slow, act fast&quot; and &quot;find your Lego.&quot; Planning is cheap and safe, whereas active delivery burns capital daily and opens what the authors call the &quot;window of doom&quot;—exposure to political, market, and supply shocks. Rigorous upfront simulation and design let teams compress delivery into a fast, disciplined sprint, while breaking bespoke megaprojects into standardized, repeatable modules turns one-off gambles into steep learning curves.</p>
+          </div>
+          <figure class="econ-chart-box">
+            <div class="econ-chart-bar"></div>
+            <h5 class="chart-title">Modularity tames fat-tailed cost blowouts</h5>
+            <p class="chart-subtitle">Share of projects with cost overruns of 50% or more (%)</p>
+            
+            <div class="chart-svg-wrap">
+              <svg viewBox="0 0 680 206" class="econ-svg" role="img" aria-label="Modularity tames fat-tailed cost blowouts">
+<line x1="260.0" y1="14" x2="260.0" y2="196" class="chart-grid"></line>
+<text x="260.0" y="11" text-anchor="middle" class="chart-tick">0%</text>
+<line x1="351.5" y1="14" x2="351.5" y2="196" class="chart-grid"></line>
+<text x="351.5" y="11" text-anchor="middle" class="chart-tick">25%</text>
+<line x1="443.0" y1="14" x2="443.0" y2="196" class="chart-grid"></line>
+<text x="443.0" y="11" text-anchor="middle" class="chart-tick">50%</text>
+<line x1="534.5" y1="14" x2="534.5" y2="196" class="chart-grid"></line>
+<text x="534.5" y="11" text-anchor="middle" class="chart-tick">75%</text>
+<line x1="626.0" y1="14" x2="626.0" y2="196" class="chart-grid"></line>
+<text x="626.0" y="11" text-anchor="middle" class="chart-tick">100%</text>
+<text x="248" y="43.3" text-anchor="end" class="chart-label">Solar power (modular)</text>
+<rect x="260" y="30.0" width="7.3" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="273.3" y="43.3" class="chart-val">2%</text>
+<text x="248" y="77.3" text-anchor="end" class="chart-label">Wind power (modular)</text>
+<rect x="260" y="64.0" width="25.6" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="291.6" y="77.3" class="chart-val">7%</text>
+<text x="248" y="111.3" text-anchor="end" class="chart-label">IT projects</text>
+<rect x="260" y="98.0" width="65.9" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="331.9" y="111.3" class="chart-val">18%</text>
+<text x="248" y="145.3" text-anchor="end" class="chart-label">Nuclear power (bespoke)</text>
+<rect x="260" y="132.0" width="201.3" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="467.3" y="145.3" class="chart-val">55%</text>
+<text x="248" y="179.3" text-anchor="end" class="chart-label">Olympic Games (bespoke)</text>
+<rect x="260" y="166.0" width="278.2" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="544.2" y="179.3" class="chart-val">76%</text>
+</svg>
+            </div>
+            <div class="chart-source">Source: Bent Flyvbjerg &amp; Dan Gardner, How Big Things Get Done (Feb 2023), Appendix A</div>
+          </figure>
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In 1929, developers John Raskob and Al Smith set out to build the Empire State Building—then the world&#x27;s tallest skyscraper—on a brutal schedule. Rather than rushing crews onto the site to improvise, architects Shreve, Lamb &amp; Harmon and builders Starrett Brothers &amp; Eken spent months mapping every structural detail on paper, standardizing floor plans, steel beams, exterior stone panels, and window frames into repeatable units.</p>
+<p class="md-p">Once tower construction began in March 1930, the steel frame rose averaging roughly 4.5 stories a week, and the skyscraper went from initial sketch to completion in 21 months (about 13 months of main tower construction). Even with Depression-era price deflation lending a tailwind, disciplined upfront design paid off: budgeted at $50 million, the tower opened ahead of schedule at roughly $41 million—about 17–18% under budget.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Treating planning as cheap experimentation and delivery as a fast assembly line directly attacks fat-tailed risk. Iterating on paper, in software models, or with pilot modules costs pennies compared to fixing mistakes mid-build, when crews sit idle and financing charges compound.</p>
+<p class="md-p">Flyvbjerg&#x27;s Appendix A data confirms the payoff of repeatability: modular technologies such as solar farms (2% suffering 50%+ overruns, +1% mean overrun) and wind power (7% in the tail, +13% mean) stay close to budget, whereas bespoke nuclear plants (55% in the tail, +120% mean) and Olympic Games (76% in the tail, +157% mean) routinely spiral.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Excessive upfront planning can slide into analysis paralysis when user needs or underlying technologies shift faster than a static blueprint can anticipate. In fast-moving software or exploratory R&amp;D, spending a year perfecting specifications before shipping risks building the wrong product cleanly.</p>
+<p class="md-p">Modularity also has real physical and strategic limits. Not every landmark or frontier infrastructure system can be stamped from identical Lego bricks—and occasionally, as with the Sydney Opera House (roughly 1,400% over budget and 10 years late, yet a UNESCO World Heritage icon), society judges a bespoke creation by cultural breakthroughs that cost-benefit tables miss.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“Put enormous care and effort into planning to ensure that delivery is smooth and swift. Think slow, act fast: That&#x27;s the secret of success.”</p>
+            <footer>— Bent Flyvbjerg &amp; Dan Gardner, How Big Things Get Done (2023), Chapter 1</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-between gap-2 muted-text">
+            <span><span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span></span>
+            <span class="font-mono" style="font-size: 11px;">#2026-11-23-think-slow-modularity</span>
+          </div>
+        </div>
+      </article>
+      <article id="post-2026-11-20-range-wicked-problems" class="wiki-card post-card" data-post-id="2026-11-20-range-wicked-problems" data-tags="#strategy,#problem-solving,#generalists,#innovation,#ft-2019-shortlist" data-book="Range: Why Generalists Triumph in a Specialized World" data-search="2026-11-20 broad analogical range unlocks wicked problems range: why generalists triumph in a specialized world david epstein ft 2019 shortlist #strategy #problem-solving #generalists #innovation #ft-2019-shortlist early hyper-specialization works wonders in what psychologist robin hogarth called &quot;kind&quot; learning environments—domains like chess, golf, or classical music where rules are fixed, patterns repeat, and feedback is rapid and unambiguous. most consequential decisions in business, engineering, and science, however, unfold in &quot;wicked&quot; environments, where rules shift, patterns rarely repeat cleanly, and feedback is delayed or actively misleading.
+
+in range, david epstein shows that in wicked domains, drilling ever deeper into a narrow silo traps thinkers in surface-level experience. breakthroughs instead depend on &quot;far transfer&quot;—recognizing deep structural analogies across distant fields. people who spend an early &quot;sampling period&quot; exploring multiple domains accumulate a wider library of mental models, letting them import solutions from outside a problem&#x27;s home turf rather than mistaking yesterday&#x27;s local rules for permanent laws. in chapter 5, epstein highlights a classic cognitive psychology experiment by mary gick and keith holyoak (1980) built around karl duncker&#x27;s tumor-radiation puzzle: a doctor must destroy an inoperable stomach tumor using high-intensity rays that would also kill healthy tissue on the way in. the elegant answer is to split the beam into many weak rays fired from different angles so they converge at full strength only on the tumor.
+
+presented cold, only about 10% of participants found that solution. next, gick and holyoak gave a new group a seemingly unrelated warm-up story first—about a general who splits his army into small squads along separate mined roads so they converge safely on a fortress at once—before asking them to solve the tumor puzzle. without a prompt to connect the two, only roughly 30% spotted the structural parallel; when given an explicit hint that the earlier story might help, roughly 75% solved it. even when the right answer sits right in front of us, narrow surface framing (&quot;medicine&quot; vs. &quot;military&quot;) blinds us unless we actively reason across domains. real-world strategy and r&amp;d rarely resemble chess; once the frontier moves, yesterday&#x27;s narrow playbook turns into a blindfold. broad exploration equips teams with conceptual breadth to spot structural parallels when familiar rules break down.
+
+empirical innovation data backs up that outside-in edge. in a study highlighted by epstein, lars bo jeppesen and karim lakhani examined 166 stubborn corporate r&amp;d problems posted to the open-innovation platform innocentive; outside contributors solved 49 of them (nearly 30%), and the further a problem sat from a solver&#x27;s primary specialty, the higher their odds of cracking it. range is a complement to depth, not a license for superficial dabbling. in high-precision bottlenecks with tight feedback loops—such as neurosurgery, compiler design, or semiconductor lithography—world-class execution still requires thousands of hours of domain-specific mastery that generalists cannot shortcut.
+
+delaying specialization also carries real organizational and career friction: broad explorers can look unfocused on traditional resumes, struggle in specialist hiring screens, and need deliberate synthesis so wide exposure compounds into sound judgment rather than scattered trivia. facing kind problems, narrow specialization can be remarkably efficient. the problem is that we often expect the hyperspecialist, because of their expertise in a narrow area, to magically be able to extend their skill to wicked problems. the results can be disastrous.">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-2026-11-20-range-wicked-problems" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">STRATEGY · FT 2019 SHORTLIST</div>
+            <div class="flex items-center gap-2">
+              <span id="arrow-2026-11-20-range-wicked-problems" class="chevron-wrap">
+                <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <h2 class="post-title">Broad analogical range unlocks wicked problems</h2>
+            </div>
+            <div class="post-subline muted-text">
+              <span><strong>Range: Why Generalists Triumph in a Specialized World</strong> · David Epstein</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row" onclick="event.stopPropagation()">
+              <button type="button" class="category-tag" data-tag="#strategy" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #strategy">#strategy</button> <button type="button" class="category-tag" data-tag="#problem-solving" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #problem-solving">#problem-solving</button> <button type="button" class="category-tag" data-tag="#generalists" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #generalists">#generalists</button> <button type="button" class="category-tag" data-tag="#innovation" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #innovation">#innovation</button> <button type="button" class="category-tag" data-tag="#ft-2019-shortlist" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #ft-2019-shortlist">#ft-2019-shortlist</button>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1">
+              <span class="font-mono">2026-11-20</span>
+              <a class="more-pill" href="entries/2026-11-20-range-wicked-problems.html" title="Open standalone entry page">Entry ↗</a>
+              <button type="button" class="more-pill" onclick="copyPostHashLink(this.closest('.post-card').getAttribute('data-post-id'), event)" title="Copy deep link (#post=2026-11-20-range-wicked-problems)">#</button>
+            </div>
+            <div class="post-word-count">514 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-20-range-wicked-problems" class="hidden markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Early hyper-specialization works wonders in what psychologist Robin Hogarth called &quot;kind&quot; learning environments—domains like chess, golf, or classical music where rules are fixed, patterns repeat, and feedback is rapid and unambiguous. Most consequential decisions in business, engineering, and science, however, unfold in &quot;wicked&quot; environments, where rules shift, patterns rarely repeat cleanly, and feedback is delayed or actively misleading.</p>
+<p class="md-p">In Range, David Epstein shows that in wicked domains, drilling ever deeper into a narrow silo traps thinkers in surface-level experience. Breakthroughs instead depend on &quot;far transfer&quot;—recognizing deep structural analogies across distant fields. People who spend an early &quot;sampling period&quot; exploring multiple domains accumulate a wider library of mental models, letting them import solutions from outside a problem&#x27;s home turf rather than mistaking yesterday&#x27;s local rules for permanent laws.</p>
+          </div>
+          <figure class="econ-chart-box">
+            <div class="econ-chart-bar"></div>
+            <h5 class="chart-title">Cross-domain insight rarely fires unprompted</h5>
+            <p class="chart-subtitle">Share of participants solving Duncker&#x27;s tumor-radiation problem (%)</p>
+            
+            <div class="chart-svg-wrap">
+              <svg viewBox="0 0 680 138" class="econ-svg" role="img" aria-label="Cross-domain insight rarely fires unprompted">
+<line x1="260.0" y1="14" x2="260.0" y2="128" class="chart-grid"></line>
+<text x="260.0" y="11" text-anchor="middle" class="chart-tick">0%</text>
+<line x1="351.5" y1="14" x2="351.5" y2="128" class="chart-grid"></line>
+<text x="351.5" y="11" text-anchor="middle" class="chart-tick">25%</text>
+<line x1="443.0" y1="14" x2="443.0" y2="128" class="chart-grid"></line>
+<text x="443.0" y="11" text-anchor="middle" class="chart-tick">50%</text>
+<line x1="534.5" y1="14" x2="534.5" y2="128" class="chart-grid"></line>
+<text x="534.5" y="11" text-anchor="middle" class="chart-tick">75%</text>
+<line x1="626.0" y1="14" x2="626.0" y2="128" class="chart-grid"></line>
+<text x="626.0" y="11" text-anchor="middle" class="chart-tick">100%</text>
+<text x="248" y="43.3" text-anchor="end" class="chart-label">Cold baseline (no prior analogy)</text>
+<rect x="260" y="30.0" width="36.6" height="18" rx="1.5" class="chart-bar-bench"></rect>
+<text x="302.6" y="43.3" class="chart-val">10%</text>
+<text x="248" y="77.3" text-anchor="end" class="chart-label">Read fortress story first (no hint)</text>
+<rect x="260" y="64.0" width="109.8" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="375.8" y="77.3" class="chart-val">30%</text>
+<text x="248" y="111.3" text-anchor="end" class="chart-label">Read fortress story + hint to apply</text>
+<rect x="260" y="98.0" width="274.5" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="540.5" y="111.3" class="chart-val">75%</text>
+</svg>
+            </div>
+            <div class="chart-source">Source: David Epstein, Range (May 2019); Mary Gick &amp; Keith Holyoak (1980)</div>
+          </figure>
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In Chapter 5, Epstein highlights a classic cognitive psychology experiment by Mary Gick and Keith Holyoak (1980) built around Karl Duncker&#x27;s tumor-radiation puzzle: a doctor must destroy an inoperable stomach tumor using high-intensity rays that would also kill healthy tissue on the way in. The elegant answer is to split the beam into many weak rays fired from different angles so they converge at full strength only on the tumor.</p>
+<p class="md-p">Presented cold, only about 10% of participants found that solution. Next, Gick and Holyoak gave a new group a seemingly unrelated warm-up story first—about a general who splits his army into small squads along separate mined roads so they converge safely on a fortress at once—before asking them to solve the tumor puzzle. Without a prompt to connect the two, only roughly 30% spotted the structural parallel; when given an explicit hint that the earlier story might help, roughly 75% solved it. Even when the right answer sits right in front of us, narrow surface framing (&quot;medicine&quot; vs. &quot;military&quot;) blinds us unless we actively reason across domains.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Real-world strategy and R&amp;D rarely resemble chess; once the frontier moves, yesterday&#x27;s narrow playbook turns into a blindfold. Broad exploration equips teams with conceptual breadth to spot structural parallels when familiar rules break down.</p>
+<p class="md-p">Empirical innovation data backs up that outside-in edge. In a study highlighted by Epstein, Lars Bo Jeppesen and Karim Lakhani examined 166 stubborn corporate R&amp;D problems posted to the open-innovation platform InnoCentive; outside contributors solved 49 of them (nearly 30%), and the further a problem sat from a solver&#x27;s primary specialty, the higher their odds of cracking it.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Range is a complement to depth, not a license for superficial dabbling. In high-precision bottlenecks with tight feedback loops—such as neurosurgery, compiler design, or semiconductor lithography—world-class execution still requires thousands of hours of domain-specific mastery that generalists cannot shortcut.</p>
+<p class="md-p">Delaying specialization also carries real organizational and career friction: broad explorers can look unfocused on traditional resumes, struggle in specialist hiring screens, and need deliberate synthesis so wide exposure compounds into sound judgment rather than scattered trivia.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“Facing kind problems, narrow specialization can be remarkably efficient. The problem is that we often expect the hyperspecialist, because of their expertise in a narrow area, to magically be able to extend their skill to wicked problems. The results can be disastrous.”</p>
+            <footer>— David Epstein, Range (2019), Chapter 10</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-between gap-2 muted-text">
+            <span><span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span></span>
+            <span class="font-mono" style="font-size: 11px;">#2026-11-20-range-wicked-problems</span>
+          </div>
+        </div>
+      </article>
+      <article id="post-2026-11-19-chip-war-chokepoints" class="wiki-card post-card" data-post-id="2026-11-19-chip-war-chokepoints" data-tags="#geopolitics,#semiconductors,#supply-chains,#business-strategy,#ft-2022-winner" data-book="Chip War: The Fight for the World&#x27;s Most Critical Technology" data-search="2026-11-19 hyper-specialization creates geopolitical chokepoints chip war: the fight for the world&#x27;s most critical technology chris miller ft 2022 winner #geopolitics #semiconductors #supply-chains #business-strategy #ft-2022-winner modern globalization was supposed to make supply chains resilient by spreading production across borders. in chip war, economic historian chris miller shows that in semiconductors, globalization did the exact opposite: it created extreme geographic and corporate chokepoints.
+
+building leading-edge microchips requires such staggering capital investment and compounding engineering know-how that no single country—and almost no single company—can master every link alone. as the industry split into specialized niches across continents (design software in the u.s., ultra-precise optics in germany, lithography scanners in the netherlands, advanced fabrication in taiwan and south korea), competitive markets quietly collapsed into near-monopolies at each step. whoever controls an irreplaceable bottleneck holds disproportionate geopolitical leverage—not just over smartphones and ai data centers, but over modern military power itself. in 1987, veteran texas instruments executive morris chang founded tsmc in hsinchu, taiwan—backed by the taiwanese government (~48%) and dutch electronics giant philips (~27.6% alongside key ip transfers)—around a radical business model: the pure-play foundry. at the time, chipmakers like intel both designed and fabricated their own chips. chang promised tsmc would never design or sell its own branded silicon, eliminating any conflict of interest with customers.
+
+that trust unlocked the fabless boom: companies like nvidia, qualcomm, and apple could pour capital into chip architecture while outsourcing manufacturing to tsmc. by pooling global demand, tsmc reinvested profits into ever-smaller nodes faster than integrated rivals could match, eventually fabricating over 90% of the world&#x27;s most advanced (sub-10nm) logic chips. yet tsmc itself depends on a single european chokepoint: dutch firm asml, the sole maker of extreme ultraviolet (euv) lithography machines, which blast molten tin droplets with lasers inside a vacuum and bounce 13.5-nanometer light off carl zeiss mirrors—all to print designs created on software dominated by u.s. firms synopsys and cadence (alongside siemens eda, formerly u.s. firm mentor graphics). hyper-specialization is the only reason computing kept getting exponentially faster and cheaper. modern leading-edge fabs cost $10b–$20b+ each, standard euv scanners run roughly $150m–$200m, and next-generation high-na euv machines reach $350m–$400m. only by aggregating global demand at tsmc and pooling multi-decade r&amp;d across the u.s., europe, and east asia could the industry sustain moore&#x27;s law at consumer prices.
+
+strategically, proponents of this interdependence also point to taiwan&#x27;s &#x27;silicon shield&#x27;: because a disruption in hsinchu would cripple both western and chinese tech supply chains simultaneously, taiwan&#x27;s chokepoint status raises the economic cost of military conflict. optimizing purely for cost efficiency builds catastrophic single points of failure. concentrating over 90% of leading-edge logic fabrication on an island roughly 100 miles off mainland china&#x27;s coast turns a regional geopolitical flashpoint—or a major earthquake—into a systemic threat to the global economy. worse, once bottlenecks harden into monopolies, they invite weaponization: washington moved early to block asml euv shipments to china (2019–2020) and later expanded controls to u.s. chip-design tools and advanced ai accelerators.
+
+as miller himself warns, relying on a &#x27;silicon shield&#x27; assumes economic deterrence always overrides political ambition—just as europe once assumed russian gas interdependence would prevent war. recognizing that fragility, the u.s. passed the $52.7 billion chips and science act in 2022—alongside parallel subsidy drives in the eu and japan—explicitly trading some cost efficiency to rebuild domestic redundancy. unlike oil, which can be bought from many countries, our production of computing power depends fundamentally on a series of choke points: tools, chemicals, and software that often are produced by a handful of companies—and sometimes only by one. no other facet of the economy is so dependent on so few firms.">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-2026-11-19-chip-war-chokepoints" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">GEOPOLITICS · FT 2022 WINNER</div>
+            <div class="flex items-center gap-2">
+              <span id="arrow-2026-11-19-chip-war-chokepoints" class="chevron-wrap">
+                <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <h2 class="post-title">Hyper-specialization creates geopolitical chokepoints</h2>
+            </div>
+            <div class="post-subline muted-text">
+              <span><strong>Chip War: The Fight for the World&#x27;s Most Critical Technology</strong> · Chris Miller</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row" onclick="event.stopPropagation()">
+              <button type="button" class="category-tag" data-tag="#geopolitics" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #geopolitics">#geopolitics</button> <button type="button" class="category-tag" data-tag="#semiconductors" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #semiconductors">#semiconductors</button> <button type="button" class="category-tag" data-tag="#supply-chains" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #supply-chains">#supply-chains</button> <button type="button" class="category-tag" data-tag="#business-strategy" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #business-strategy">#business-strategy</button> <button type="button" class="category-tag" data-tag="#ft-2022-winner" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #ft-2022-winner">#ft-2022-winner</button>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1">
+              <span class="font-mono">2026-11-19</span>
+              <a class="more-pill" href="entries/2026-11-19-chip-war-chokepoints.html" title="Open standalone entry page">Entry ↗</a>
+              <button type="button" class="more-pill" onclick="copyPostHashLink(this.closest('.post-card').getAttribute('data-post-id'), event)" title="Copy deep link (#post=2026-11-19-chip-war-chokepoints)">#</button>
+            </div>
+            <div class="post-word-count">578 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-19-chip-war-chokepoints" class="hidden markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Modern globalization was supposed to make supply chains resilient by spreading production across borders. In Chip War, economic historian Chris Miller shows that in semiconductors, globalization did the exact opposite: it created extreme geographic and corporate chokepoints.</p>
+<p class="md-p">Building leading-edge microchips requires such staggering capital investment and compounding engineering know-how that no single country—and almost no single company—can master every link alone. As the industry split into specialized niches across continents (design software in the U.S., ultra-precise optics in Germany, lithography scanners in the Netherlands, advanced fabrication in Taiwan and South Korea), competitive markets quietly collapsed into near-monopolies at each step. Whoever controls an irreplaceable bottleneck holds disproportionate geopolitical leverage—not just over smartphones and AI data centers, but over modern military power itself.</p>
+          </div>
+          <figure class="econ-chart-box">
+            <div class="econ-chart-bar"></div>
+            <h5 class="chart-title">More concentrated than OPEC</h5>
+            <p class="chart-subtitle">Share of global output or capacity controlled by the leading bottleneck (%)</p>
+            
+            <div class="chart-svg-wrap">
+              <svg viewBox="0 0 680 206" class="econ-svg" role="img" aria-label="More concentrated than OPEC">
+<line x1="260.0" y1="14" x2="260.0" y2="196" class="chart-grid"></line>
+<text x="260.0" y="11" text-anchor="middle" class="chart-tick">0%</text>
+<line x1="351.5" y1="14" x2="351.5" y2="196" class="chart-grid"></line>
+<text x="351.5" y="11" text-anchor="middle" class="chart-tick">25%</text>
+<line x1="443.0" y1="14" x2="443.0" y2="196" class="chart-grid"></line>
+<text x="443.0" y="11" text-anchor="middle" class="chart-tick">50%</text>
+<line x1="534.5" y1="14" x2="534.5" y2="196" class="chart-grid"></line>
+<text x="534.5" y="11" text-anchor="middle" class="chart-tick">75%</text>
+<line x1="626.0" y1="14" x2="626.0" y2="196" class="chart-grid"></line>
+<text x="626.0" y="11" text-anchor="middle" class="chart-tick">100%</text>
+<text x="248" y="43.3" text-anchor="end" class="chart-label">ASML (Netherlands) · EUV lithography</text>
+<rect x="260" y="30.0" width="366.0" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="632.0" y="43.3" class="chart-val">100%</text>
+<text x="248" y="77.3" text-anchor="end" class="chart-label">Taiwan · Sub-10nm logic capacity</text>
+<rect x="260" y="64.0" width="336.7" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="602.7" y="77.3" class="chart-val">92%</text>
+<text x="248" y="111.3" text-anchor="end" class="chart-label">2 Korean firms · Global memory chips</text>
+<rect x="260" y="98.0" width="161.0" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="427.0" y="111.3" class="chart-val">44%</text>
+<text x="248" y="145.3" text-anchor="end" class="chart-label">OPEC · World oil production (benchmark)</text>
+<rect x="260" y="132.0" width="146.4" height="18" rx="1.5" class="chart-bar-bench"></rect>
+<text x="412.4" y="145.3" class="chart-val">40%</text>
+<text x="248" y="179.3" text-anchor="end" class="chart-label">Taiwan · New computing power / year</text>
+<rect x="260" y="166.0" width="135.4" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="401.4" y="179.3" class="chart-val">37%</text>
+</svg>
+            </div>
+            <div class="chart-source">Source: Chris Miller, Chip War (Oct 2022); SIA &amp; BCG (Apr 2021)</div>
+          </figure>
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In 1987, veteran Texas Instruments executive Morris Chang founded TSMC in Hsinchu, Taiwan—backed by the Taiwanese government (~48%) and Dutch electronics giant Philips (~27.6% alongside key IP transfers)—around a radical business model: the pure-play foundry. At the time, chipmakers like Intel both designed and fabricated their own chips. Chang promised TSMC would never design or sell its own branded silicon, eliminating any conflict of interest with customers.</p>
+<p class="md-p">That trust unlocked the fabless boom: companies like Nvidia, Qualcomm, and Apple could pour capital into chip architecture while outsourcing manufacturing to TSMC. By pooling global demand, TSMC reinvested profits into ever-smaller nodes faster than integrated rivals could match, eventually fabricating over 90% of the world&#x27;s most advanced (sub-10nm) logic chips. Yet TSMC itself depends on a single European chokepoint: Dutch firm ASML, the sole maker of Extreme Ultraviolet (EUV) lithography machines, which blast molten tin droplets with lasers inside a vacuum and bounce 13.5-nanometer light off Carl Zeiss mirrors—all to print designs created on software dominated by U.S. firms Synopsys and Cadence (alongside Siemens EDA, formerly U.S. firm Mentor Graphics).</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Hyper-specialization is the only reason computing kept getting exponentially faster and cheaper. Modern leading-edge fabs cost $10B–$20B+ each, standard EUV scanners run roughly $150M–$200M, and next-generation High-NA EUV machines reach $350M–$400M. Only by aggregating global demand at TSMC and pooling multi-decade R&amp;D across the U.S., Europe, and East Asia could the industry sustain Moore&#x27;s Law at consumer prices.</p>
+<p class="md-p">Strategically, proponents of this interdependence also point to Taiwan&#x27;s &#x27;Silicon Shield&#x27;: because a disruption in Hsinchu would cripple both Western and Chinese tech supply chains simultaneously, Taiwan&#x27;s chokepoint status raises the economic cost of military conflict.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Optimizing purely for cost efficiency builds catastrophic single points of failure. Concentrating over 90% of leading-edge logic fabrication on an island roughly 100 miles off mainland China&#x27;s coast turns a regional geopolitical flashpoint—or a major earthquake—into a systemic threat to the global economy. Worse, once bottlenecks harden into monopolies, they invite weaponization: Washington moved early to block ASML EUV shipments to China (2019–2020) and later expanded controls to U.S. chip-design tools and advanced AI accelerators.</p>
+<p class="md-p">As Miller himself warns, relying on a &#x27;Silicon Shield&#x27; assumes economic deterrence always overrides political ambition—just as Europe once assumed Russian gas interdependence would prevent war. Recognizing that fragility, the U.S. passed the $52.7 billion CHIPS and Science Act in 2022—alongside parallel subsidy drives in the EU and Japan—explicitly trading some cost efficiency to rebuild domestic redundancy.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“Unlike oil, which can be bought from many countries, our production of computing power depends fundamentally on a series of choke points: tools, chemicals, and software that often are produced by a handful of companies—and sometimes only by one. No other facet of the economy is so dependent on so few firms.”</p>
+            <footer>— Chris Miller, Chip War (2022)</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-between gap-2 muted-text">
+            <span><span class="verified-chip" title="Critically fact-checked by subagent">✓ Fact-checked</span></span>
+            <span class="font-mono" style="font-size: 11px;">#2026-11-19-chip-war-chokepoints</span>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <div id="emptyBanner" class="empty-state hidden">No posts match this filter. <a href="#all" onclick="resetFilters(); return false;">Show all posts</a>.</div>
+  </div>
+
+  <script>
+    var activeTag = 'all';
+
+    function getCookie(name) {
+      try {
+        var prefix = encodeURIComponent(name) + '=';
+        var parts = document.cookie ? document.cookie.split(';') : [];
+        for (var i = 0; i < parts.length; i++) {
+          var c = parts[i].trim();
+          if (c.indexOf(prefix) === 0) {
+            return decodeURIComponent(c.slice(prefix.length));
+          }
+        }
+      } catch (e) {}
+      return null;
+    }
+    function setCookie(name, value) {
+      try {
+        document.cookie =
+          encodeURIComponent(name) + '=' + encodeURIComponent(value) +
+          '; max-age=31536000; path=/; SameSite=Lax';
+      } catch (e) {}
+    }
+    function getPref(k) {
+      var fromCookie = getCookie(k);
+      if (fromCookie !== null) return fromCookie;
+      try { return window.localStorage.getItem(k); } catch (e) { return null; }
+    }
+    function setPref(k, v) {
+      setCookie(k, v);
+      try { window.localStorage.setItem(k, v); } catch (e) {}
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      var btn = document.getElementById('themeToggleBtn');
+      if (btn) btn.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
+    function toggleTheme() {
+      var cur = document.documentElement.getAttribute('data-theme') || 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      setPref('book_ideas_theme', next);
+    }
+
+    function applyStyle(style) {
+      var normalized = style === 'ft' ? 'ft' : 'economist';
+      document.documentElement.setAttribute('data-style', normalized);
+      var econBtn = document.getElementById('styleBtnEconomist');
+      var ftBtn = document.getElementById('styleBtnFt');
+      if (econBtn) {
+        econBtn.classList.toggle('active', normalized === 'economist');
+        econBtn.setAttribute('aria-pressed', normalized === 'economist' ? 'true' : 'false');
+      }
+      if (ftBtn) {
+        ftBtn.classList.toggle('active', normalized === 'ft');
+        ftBtn.setAttribute('aria-pressed', normalized === 'ft' ? 'true' : 'false');
+      }
+    }
+    function setStyle(style) {
+      applyStyle(style);
+      setPref('book_ideas_style', style === 'ft' ? 'ft' : 'economist');
+    }
+
+    function togglePost(postId, forceOpen) {
+      var body = document.getElementById('body-' + postId);
+      var arrow = document.getElementById('arrow-' + postId);
+      var card = document.getElementById('post-' + postId);
+      if (!body || !arrow || !card) return;
+      var header = card.querySelector('.post-header');
+      var shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : body.classList.contains('hidden');
+      body.classList.toggle('hidden', !shouldOpen);
+      arrow.classList.toggle('open', shouldOpen);
+      if (header) header.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    }
+
+    function handlePostKeydown(event, postId) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        togglePost(postId);
+      }
+    }
+
+    function expandCollapseAll(open) {
+      var cards = document.querySelectorAll('.post-card');
+      cards.forEach(function(card) {
+        if (!card.classList.contains('hidden')) {
+          togglePost(card.getAttribute('data-post-id'), open);
+        }
+      });
+    }
+
+    function setTagFilter(tag, skipHash) {
+      activeTag = tag || 'all';
+      document.querySelectorAll('.tag-pill').forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-tag') === activeTag);
+      });
+      applyFilters(!skipHash);
+    }
+
+    function filterByTag(tag, event) {
+      if (event) event.stopPropagation();
+      setTagFilter(activeTag === tag ? 'all' : tag);
+    }
+
+    function resetFilters() {
+      var input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      activeTag = 'all';
+      document.querySelectorAll('.post-card.row-highlight').forEach(function(el) {
+        el.classList.remove('row-highlight');
+      });
+      setTagFilter('all');
+    }
+
+    function buildHashString() {
+      var parts = [];
+      if (activeTag && activeTag !== 'all') {
+        parts.push('tag=' + encodeURIComponent(activeTag.replace(/^#/, '')));
+      }
+      var input = document.getElementById('searchInput');
+      var q = input ? (input.value || '').trim() : '';
+      if (q) parts.push('q=' + encodeURIComponent(q));
+      return parts.length ? '#' + parts.join('&') : '#all';
+    }
+
+    function updateHashBadge(hashVal) {
+      var badge = document.getElementById('currentHashBadge');
+      if (badge) badge.textContent = hashVal || '#all';
+    }
+
+    function applyFilters(syncHash) {
+      var input = document.getElementById('searchInput');
+      var q = input ? (input.value || '').trim().toLowerCase() : '';
+      var cards = document.querySelectorAll('.post-card');
+      var shown = 0;
+      cards.forEach(function(card) {
+        var tags = (card.getAttribute('data-tags') || '').split(',');
+        var hay = card.getAttribute('data-search') || '';
+        var tagMatch = activeTag === 'all' || tags.indexOf(activeTag) !== -1;
+        var qMatch = !q || hay.indexOf(q) !== -1;
+        var visible = tagMatch && qMatch;
+        card.classList.toggle('hidden', !visible);
+        if (visible) shown += 1;
+      });
+      var label = document.getElementById('visibleCountLabel');
+      if (label) label.textContent = 'Showing ' + shown + ' of ' + cards.length;
+      var empty = document.getElementById('emptyBanner');
+      if (empty) empty.classList.toggle('hidden', shown > 0 || cards.length === 0);
+      if (syncHash) {
+        var h = buildHashString();
+        updateHashBadge(h);
+        try { history.replaceState(null, '', h); } catch (e) {}
+      }
+    }
+
+    function showCopiedToast() {
+      var toast = document.getElementById('copyToast');
+      if (!toast) return;
+      toast.classList.remove('hidden');
+      setTimeout(function() { toast.classList.add('hidden'); }, 1600);
+    }
+
+    function copyText(txt) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(showCopiedToast).catch(function() {});
+      }
+    }
+
+    function copyShareLink() {
+      copyText(window.location.href);
+    }
+
+    function copyPostHashLink(postId, event) {
+      if (event) event.stopPropagation();
+      var h = '#post=' + encodeURIComponent(postId);
+      updateHashBadge(h);
+      try { history.replaceState(null, '', h); } catch (e) {}
+      copyText(window.location.href.split('#')[0] + h);
+    }
+
+    function applyHashFromLocation() {
+      var raw = (window.location.hash || '').replace(/^#/, '');
+      if (!raw || raw === 'all') {
+        setTagFilter('all', true);
+        updateHashBadge('#all');
+        return;
+      }
+      var params = {};
+      raw.split('&').forEach(function(pair) {
+        var idx = pair.indexOf('=');
+        if (idx > 0) {
+          params[decodeURIComponent(pair.slice(0, idx))] = decodeURIComponent(pair.slice(idx + 1));
+        } else {
+          params[decodeURIComponent(pair)] = '';
+        }
+      });
+      if (params.q) {
+        var input = document.getElementById('searchInput');
+        if (input) input.value = params.q;
+      }
+      if (params.tag) {
+        var normalized = '#' + params.tag.replace(/^#/, '').toLowerCase();
+        setTagFilter(normalized, true);
+      } else {
+        applyFilters(false);
+      }
+      if (params.post) {
+        var target = document.getElementById('post-' + params.post);
+        if (target) {
+          target.classList.remove('hidden');
+          togglePost(params.post, true);
+          target.classList.add('row-highlight');
+          setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
+        }
+      }
+      updateHashBadge('#' + raw);
+    }
+
+    (function init() {
+      var savedTheme = getPref('book_ideas_theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') applyTheme(savedTheme);
+      var savedStyle = getPref('book_ideas_style');
+      applyStyle(savedStyle === 'ft' ? 'ft' : 'economist');
+      applyHashFromLocation();
+      window.addEventListener('hashchange', applyHashFromLocation);
+    })();
+
+  </script>
+</body>
+</html>
