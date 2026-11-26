@@ -1,4 +1,4 @@
-Prepare today's weekday morning book-idea digest (< 1,000 words) and save it to `posts.json`.
+Prepare today's morning book-idea digest (< 1,000 words) and save it to `posts.json`.
 
 1. **Book & Topic Selection**
    - Read `posts.json` first. If `queue` has an entry matching today (or an undated next request), prioritize that book/topic and remove the fulfilled item from `queue` when saving.

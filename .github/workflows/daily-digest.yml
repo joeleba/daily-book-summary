@@ -2,12 +2,12 @@ name: Daily Book Ideas
 
 on:
   schedule:
-    # Munich (Europe/Berlin) 06:30 Mon–Fri:
+    # Munich (Europe/Berlin) 06:30 daily:
     # - 04:30 UTC during CEST (summer, UTC+2)
     # - 05:30 UTC during CET  (winter, UTC+1)
     # The DST gate step below ensures only the matching season's trigger executes.
-    - cron: "30 4 * * 1-5"
-    - cron: "30 5 * * 1-5"
+    - cron: "30 4 * * *"
+    - cron: "30 5 * * *"
   workflow_dispatch:
     inputs:
       force_run:
@@ -42,12 +42,12 @@ jobs:
           echo "Munich date: $TODAY ($TZ_ABBR), event: ${{ github.event_name }}, cron: ${{ github.event.schedule }}"
 
           if [[ "${{ github.event_name }}" == "schedule" ]]; then
-            if [[ "${{ github.event.schedule }}" == "30 4 * * 1-5" && "$TZ_ABBR" != "CEST" ]]; then
+            if [[ "${{ github.event.schedule }}" == "30 4 * * *" && "$TZ_ABBR" != "CEST" ]]; then
               echo "Skipping summer (CEST) cron during $TZ_ABBR."
               echo "should_run=false" >> "$GITHUB_OUTPUT"
               exit 0
             fi
-            if [[ "${{ github.event.schedule }}" == "30 5 * * 1-5" && "$TZ_ABBR" != "CET" ]]; then
+            if [[ "${{ github.event.schedule }}" == "30 5 * * *" && "$TZ_ABBR" != "CET" ]]; then
               echo "Skipping winter (CET) cron during $TZ_ABBR."
               echo "should_run=false" >> "$GITHUB_OUTPUT"
               exit 0

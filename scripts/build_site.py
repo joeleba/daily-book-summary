@@ -1523,7 +1523,7 @@ def render_index(data: dict[str, Any]) -> str:
         cards_html = ""
         initial_empty_html = (
             '    <div class="empty-state">'
-            "No digests published yet. Trigger the <strong>Daily Book Ideas</strong> workflow in GitHub Actions (or wait for the next weekday at 06:30 Munich time) to publish the first entry."
+            "No digests published yet. Trigger the <strong>Daily Book Ideas</strong> workflow in GitHub Actions (or wait for tomorrow at 06:30 Munich time) to publish the first entry."
             "</div>"
         )
 
@@ -1559,7 +1559,7 @@ def render_index(data: dict[str, Any]) -> str:
         </div>
         <h1 class="masthead-title">Daily Book Ideas</h1>
         <div style="font-size: 12.5px; margin-top: 3px;" class="muted-text">
-          One distilled, fact-checked idea per weekday{updated_label}
+          One distilled book idea every day{updated_label}
         </div>
       </div>
       <div class="flex items-center gap-2 flex-wrap">
