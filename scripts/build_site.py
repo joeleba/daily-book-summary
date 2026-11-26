@@ -105,6 +105,28 @@ CSS = """\
       --verified-fg: #0b5d4b;
       --chart-grid: #e3ccb8;
       --chart-bench: #9e8f84;
+      --serif-font: "Playfair Display", Georgia, "Times New Roman", serif;
+      --sans-font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --body-serif-font: "Source Serif 4", Georgia, "Times New Roman", serif;
+    }
+
+    html[data-style="ft"] .masthead-title {
+      font-weight: 800;
+      letter-spacing: -0.015em;
+    }
+    html[data-style="ft"] .post-title {
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+    }
+    html[data-style="ft"] .markdown-body .md-p {
+      font-family: var(--body-serif-font);
+      font-size: 15px;
+      line-height: 1.68;
+    }
+    html[data-style="ft"] .quote-block {
+      font-family: var(--serif-font);
+      font-size: 15.5px;
     }
 
     /* Financial Times (FT) Editorial Theme — Dark (Deep Espresso & Claret) */
@@ -311,12 +333,61 @@ CSS = """\
       color: var(--verified-fg);
     }
 
+    .tag-filter-section {
+      margin-bottom: 14px;
+    }
+
+    .tag-toggle-btn {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 12px;
+      border-radius: 2px;
+      font-size: 12.5px;
+      font-weight: 600;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    .tag-toggle-btn:hover {
+      border-color: var(--econ-red);
+    }
+    .tag-toggle-active {
+      color: var(--econ-red);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+    }
+    .tag-toggle-chevron {
+      display: inline-block;
+      color: var(--muted-color);
+      transition: transform 0.15s ease;
+    }
+    .tag-filter-section.open .tag-toggle-chevron {
+      transform: rotate(180deg);
+    }
+
     .tag-filter-bar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 6px;
-      margin-bottom: 14px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px 14px 40px;
+      }
+      .tag-toggle-btn {
+        display: flex;
+      }
+      .tag-filter-section:not(.open) .tag-filter-bar {
+        display: none;
+      }
+      .tag-filter-section.open .tag-filter-bar {
+        margin-top: 8px;
+      }
     }
 
     .tag-pill {
@@ -720,11 +791,25 @@ INDEX_SCRIPT = """\
       });
     }
 
+    function toggleTagBar(forceOpen) {
+      var section = document.getElementById('tagFilterSection');
+      var btn = document.getElementById('tagToggleBtn');
+      if (!section || !btn) return;
+      var shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !section.classList.contains('open');
+      section.classList.toggle('open', shouldOpen);
+      btn.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+    }
+
     function setTagFilter(tag, skipHash) {
       activeTag = tag || 'all';
       document.querySelectorAll('.tag-pill').forEach(function(btn) {
         btn.classList.toggle('active', btn.getAttribute('data-tag') === activeTag);
       });
+      var activeLabel = document.getElementById('tagToggleActive');
+      if (activeLabel) activeLabel.textContent = activeTag === 'all' ? '#all' : activeTag;
+      if (!skipHash && window.innerWidth <= 640) {
+        toggleTagBar(false);
+      }
       applyFilters(!skipHash);
     }
 
@@ -1339,6 +1424,9 @@ def render_standalone_entry(post: dict[str, Any]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{esc(title)} — Daily Book Ideas</title>
   <link rel="icon" type="image/svg+xml" href="{FAVICON}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <style>
 {CSS}
   </style>
@@ -1453,6 +1541,9 @@ def render_index(data: dict[str, Any]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Book Ideas — Reading Log</title>
   <link rel="icon" type="image/svg+xml" href="{FAVICON}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <style>
 {CSS}
   </style>
@@ -1501,12 +1592,22 @@ def render_index(data: dict[str, Any]) -> str:
       <div id="visibleCountLabel" class="muted-text" style="font-size: 12px;">Showing {len(posts)} of {len(posts)}</div>
     </div>
 
-    <!-- Hashtag Filter Bar -->
-    <div class="tag-filter-bar" role="group" aria-label="Filter by hashtag">
-      <button type="button" class="tag-pill active" data-tag="all" onclick="setTagFilter('all')">
-        #all <span class="pill-count">{len(posts)}</span>
+    <!-- Hashtag Filter Bar (collapsible on mobile) -->
+    <div id="tagFilterSection" class="tag-filter-section">
+      <button type="button" id="tagToggleBtn" class="tag-toggle-btn" aria-expanded="false" aria-controls="tagFilterBar" onclick="toggleTagBar()">
+        <span class="flex items-center gap-2">
+          <span>Filter by tag</span>
+          <span id="tagToggleActive" class="tag-toggle-active">#all</span>
+          <span class="pill-count">{len(tag_counts)}</span>
+        </span>
+        <span class="tag-toggle-chevron" aria-hidden="true">▾</span>
       </button>
+      <div id="tagFilterBar" class="tag-filter-bar" role="group" aria-label="Filter by hashtag">
+        <button type="button" class="tag-pill active" data-tag="all" onclick="setTagFilter('all')">
+          #all <span class="pill-count">{len(posts)}</span>
+        </button>
 {tag_pills}
+      </div>
     </div>
 
     <!-- Posts Feed -->
