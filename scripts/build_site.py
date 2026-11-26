@@ -4,7 +4,6 @@
 Reads posts.json from the repository root and generates:
   - docs/index.html            (full reading log with search, tag filters, dark mode)
   - docs/entries/<id>.html     (standalone permalink page for each post)
-  - docs/posts.json            (copy of posts.json for raw access)
   - docs/.nojekyll             (disable Jekyll on GitHub Pages)
 """
 
@@ -1645,8 +1644,7 @@ def main() -> None:
             render_standalone_entry(post), encoding="utf-8"
         )
 
-    # Copy posts.json and add .nojekyll for GitHub Pages
-    shutil.copyfile(POSTS_JSON, DOCS_DIR / "posts.json")
+    # Add .nojekyll for GitHub Pages
     (DOCS_DIR / ".nojekyll").write_text("", encoding="utf-8")
 
     print(
