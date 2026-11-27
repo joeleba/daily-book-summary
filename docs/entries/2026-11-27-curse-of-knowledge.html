@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-style="economist">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Curse of Knowledge makes experts sound like Morse code — Daily Book Ideas</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    .container { max-width: 960px; margin: 0 auto; }
+
+    :root {
+      color-scheme: light;
+      --econ-red: #e3120b;
+      --econ-red-soft: rgba(227, 18, 11, 0.08);
+      --econ-blue: #1d4f73;
+      --bg-color: #f8f6f1;
+      --text-color: #141414;
+      --muted-color: #5c5852;
+      --card-bg: #ffffff;
+      --border-color: #ddd8ce;
+      --header-bg: #f1ede4;
+      --details-bg: #faf8f4;
+      --input-bg: #ffffff;
+      --input-border: #c9c3b8;
+      --link-color: #1d4f73;
+      --code-bg: #efeae0;
+      --highlight-ring: #e3120b;
+      --highlight-bg: #fffaf9;
+      --verified-bg: #ebf5ee;
+      --verified-fg: #1b5e34;
+      --chart-grid: #e3ded4;
+      --chart-bench: #8a949e;
+      --serif-font: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+      --sans-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --econ-red: #f03a33;
+      --econ-red-soft: rgba(240, 58, 51, 0.14);
+      --econ-blue: #6aa7cf;
+      --bg-color: #121316;
+      --text-color: #ece9e2;
+      --muted-color: #a39f97;
+      --card-bg: #191b1f;
+      --border-color: #2b2e35;
+      --header-bg: #21242b;
+      --details-bg: #16181c;
+      --input-bg: #15171b;
+      --input-border: #3a3e48;
+      --link-color: #6aa7cf;
+      --code-bg: #23262e;
+      --highlight-ring: #f03a33;
+      --highlight-bg: rgba(240, 58, 51, 0.07);
+      --verified-bg: rgba(46, 160, 67, 0.18);
+      --verified-fg: #85e0a3;
+      --chart-grid: #2c3038;
+      --chart-bench: #6e7781;
+    }
+
+    /* Financial Times (FT) Editorial Theme — Light (Iconic Salmon Paper & Claret) */
+    html[data-style="ft"] {
+      --econ-red: #990f3d;
+      --econ-red-soft: rgba(153, 15, 61, 0.10);
+      --econ-blue: #0d7680;
+      --bg-color: #fff1e5;
+      --text-color: #1a1816;
+      --muted-color: #66605c;
+      --card-bg: #fff7f0;
+      --border-color: #e6d0bd;
+      --header-bg: #f2dfce;
+      --details-bg: #fceee1;
+      --input-bg: #fffaf5;
+      --input-border: #d9bfa9;
+      --link-color: #0d7680;
+      --code-bg: #f2dfce;
+      --highlight-ring: #990f3d;
+      --highlight-bg: #ffece0;
+      --verified-bg: #e3f0ea;
+      --verified-fg: #0b5d4b;
+      --chart-grid: #e3ccb8;
+      --chart-bench: #9e8f84;
+      --serif-font: "Playfair Display", Georgia, "Times New Roman", serif;
+      --sans-font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --body-serif-font: "Source Serif 4", Georgia, "Times New Roman", serif;
+    }
+
+    html[data-style="ft"] .masthead-title {
+      font-weight: 800;
+      letter-spacing: -0.015em;
+    }
+    html[data-style="ft"] .post-title {
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.01em;
+    }
+    html[data-style="ft"] .markdown-body .md-p {
+      font-family: var(--body-serif-font);
+      font-size: 15px;
+      line-height: 1.68;
+    }
+    html[data-style="ft"] .quote-block {
+      font-family: var(--serif-font);
+      font-size: 15.5px;
+    }
+
+    /* Financial Times (FT) Editorial Theme — Dark (Deep Espresso & Claret) */
+    html[data-style="ft"][data-theme="dark"] {
+      --econ-red: #e05a84;
+      --econ-red-soft: rgba(224, 90, 132, 0.16);
+      --econ-blue: #4db6c0;
+      --bg-color: #181311;
+      --text-color: #f3e8df;
+      --muted-color: #b5a497;
+      --card-bg: #221b18;
+      --border-color: #3a2f2a;
+      --header-bg: #2c231f;
+      --details-bg: #1d1714;
+      --input-bg: #1b1513;
+      --input-border: #4a3c36;
+      --link-color: #4db6c0;
+      --code-bg: #2e2420;
+      --highlight-ring: #e05a84;
+      --highlight-bg: rgba(224, 90, 132, 0.08);
+      --verified-bg: rgba(77, 182, 192, 0.18);
+      --verified-fg: #8ce0e8;
+      --chart-grid: #3b302b;
+      --chart-bench: #8a7b72;
+    }
+
+    .style-switch {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      overflow: hidden;
+      background-color: var(--header-bg);
+    }
+    .style-switch-btn {
+      padding: 5px 9px;
+      border: 0;
+      background: transparent;
+      color: var(--muted-color);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .style-switch-btn:hover {
+      color: var(--text-color);
+    }
+    .style-switch-btn.active {
+      background-color: var(--econ-red);
+      color: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      font-family: var(--sans-font);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      border-top: 4px solid var(--econ-red);
+      padding: 20px 22px 48px;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, p { margin: 0; }
+    .hidden { display: none !important; }
+    .flex { display: flex; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-1 { flex: 1 1 0%; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .justify-between { justify-content: space-between; }
+    .justify-end { justify-content: flex-end; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-1-5 { gap: 0.375rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .min-w-0 { min-width: 0; }
+    .shrink-0 { flex-shrink: 0; }
+    .font-mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    .muted-text { color: var(--muted-color); }
+    .grid-1 { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+
+    a { color: var(--link-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    :focus-visible {
+      outline: 2px solid var(--econ-red);
+      outline-offset: 2px;
+    }
+
+    code {
+      background-color: var(--code-bg);
+      color: var(--text-color);
+      padding: 1px 5px;
+      border-radius: 2px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.86em;
+    }
+
+    .masthead {
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--text-color);
+      margin-bottom: 14px;
+    }
+    .econ-brand-pill {
+      display: inline-block;
+      background-color: var(--econ-red);
+      color: #ffffff;
+      font-family: var(--serif-font);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+    .masthead-title {
+      font-family: var(--serif-font);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .stat-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 9px;
+      border-radius: 2px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      font-size: 12px;
+    }
+    .stat-item strong { font-weight: 700; }
+
+    .toolbar {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 2px;
+      padding: 9px 12px;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 6px 10px;
+      border: 1px solid var(--input-border);
+      border-radius: 2px;
+      font-size: 13px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+    }
+    input[type="text"]:focus {
+      border-color: var(--econ-red);
+      outline: none;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    .action-btn:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .hash-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      color: var(--econ-red);
+    }
+
+    .toast-pill {
+      padding: 3px 8px;
+      border-radius: 2px;
+      font-size: 11.5px;
+      font-weight: 600;
+      background-color: var(--verified-bg);
+      color: var(--verified-fg);
+    }
+
+    .tag-filter-section {
+      margin-bottom: 14px;
+    }
+
+    .tag-toggle-btn {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 12px;
+      border-radius: 2px;
+      font-size: 12.5px;
+      font-weight: 600;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    .tag-toggle-btn:hover {
+      border-color: var(--econ-red);
+    }
+    .tag-toggle-active {
+      color: var(--econ-red);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+    }
+    .tag-toggle-chevron {
+      display: inline-block;
+      color: var(--muted-color);
+      transition: transform 0.15s ease;
+    }
+    .tag-filter-section.open .tag-toggle-chevron {
+      transform: rotate(180deg);
+    }
+
+    .tag-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 14px 14px 40px;
+      }
+      .tag-toggle-btn {
+        display: flex;
+      }
+      .tag-filter-section:not(.open) .tag-filter-bar {
+        display: none;
+      }
+      .tag-filter-section.open .tag-filter-bar {
+        margin-top: 8px;
+      }
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted-color);
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+    }
+    .tag-pill:hover {
+      border-color: var(--econ-red);
+      color: var(--text-color);
+    }
+    .tag-pill.active {
+      background-color: var(--econ-red-soft);
+      color: var(--econ-red);
+      border-color: var(--econ-red);
+    }
+    .pill-count {
+      font-size: 11px;
+      padding: 0 5px;
+      border-radius: 2px;
+      background-color: var(--header-bg);
+      color: var(--muted-color);
+    }
+    .tag-pill.active .pill-count {
+      color: var(--econ-red);
+      font-weight: 700;
+    }
+
+    .wiki-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-top: 2px solid var(--text-color);
+      border-radius: 2px;
+      padding: 15px 18px;
+    }
+    .wiki-card.row-highlight {
+      background-color: var(--highlight-bg);
+      border-top-color: var(--econ-red);
+      outline: 2px solid var(--econ-red);
+      outline-offset: -2px;
+    }
+
+    .post-header { cursor: pointer; }
+    .post-header.static-header { cursor: default; }
+    .kicker-line {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--econ-red);
+      margin-bottom: 4px;
+      padding-left: 22px;
+    }
+    .static-header .kicker-line,
+    .static-header .post-subline,
+    .static-header .post-tags-row {
+      padding-left: 0;
+    }
+    .post-title {
+      font-family: var(--serif-font);
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+    .post-subline {
+      font-size: 13px;
+      margin-top: 4px;
+      padding-left: 22px;
+    }
+    .post-tags-row {
+      margin-top: 8px;
+      padding-left: 22px;
+    }
+    .post-meta-right {
+      font-size: 11.5px;
+      line-height: 1.4;
+      text-align: right;
+    }
+    .post-word-count {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .chevron-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      color: var(--econ-red);
+      transition: transform 0.15s ease;
+      flex-shrink: 0;
+    }
+    .chevron-wrap.open { transform: rotate(90deg); }
+    .chevron-svg { width: 14px; height: 14px; }
+
+    .category-tag {
+      font-size: 11px;
+      padding: 1px 7px;
+      border-radius: 2px;
+      background-color: var(--header-bg);
+      color: var(--muted-color);
+      border: 1px solid var(--border-color);
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .category-tag:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .verified-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 2px;
+      background-color: var(--verified-bg);
+      color: var(--verified-fg);
+    }
+
+    .more-pill {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-size: 11px;
+      color: var(--muted-color);
+      background-color: var(--header-bg);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+    .more-pill:hover {
+      border-color: var(--econ-red);
+      color: var(--econ-red);
+      text-decoration: none;
+    }
+
+    .post-body {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .markdown-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+    .markdown-body .md-h2, .md-h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--econ-red);
+      margin: 0 0 5px 0;
+    }
+    .markdown-body .md-p { margin: 0; }
+    .markdown-body .md-p + .md-p, .md-p + .md-p { margin-top: 9px; }
+    .idea-section { margin-bottom: 14px; }
+
+    .idea-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    @media (min-width: 720px) {
+      .idea-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .idea-box {
+      padding: 12px 14px;
+      border-radius: 2px;
+      background-color: var(--details-bg);
+      border: 1px solid var(--border-color);
+      border-top-width: 2.5px;
+    }
+    .idea-box-for { border-top-color: var(--econ-blue); }
+    .idea-box-for .md-h2 { color: var(--econ-blue); }
+    .idea-box-against { border-top-color: var(--econ-red); }
+
+    .quote-block {
+      margin: 0 0 12px 0;
+      padding: 12px 16px;
+      border-left: 3px solid var(--econ-red);
+      background-color: var(--details-bg);
+      font-family: var(--serif-font);
+      font-size: 15px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .quote-block footer {
+      margin-top: 6px;
+      font-family: var(--sans-font);
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted-color);
+    }
+
+    /* Economist Graphic Detail Chart */
+    .econ-chart-box {
+      margin: 0 0 16px 0;
+      padding: 14px 16px 12px;
+      background-color: var(--details-bg);
+      border: 1px solid var(--border-color);
+      border-top: 2px solid var(--text-color);
+    }
+    .econ-chart-bar {
+      width: 28px;
+      height: 4px;
+      background-color: var(--econ-red);
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-family: var(--sans-font);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-color);
+      line-height: 1.25;
+    }
+    .chart-subtitle {
+      font-size: 12px;
+      color: var(--muted-color);
+      margin-top: 2px;
+      margin-bottom: 10px;
+    }
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 8px;
+      font-size: 11.5px;
+      color: var(--muted-color);
+    }
+    .chart-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chart-legend-swatch {
+      width: 14px;
+      height: 3px;
+      display: inline-block;
+    }
+    .chart-svg-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .econ-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .chart-grid {
+      stroke: var(--chart-grid);
+      stroke-width: 1;
+      stroke-dasharray: 2 2;
+    }
+    .chart-axis {
+      stroke: var(--muted-color);
+      stroke-width: 1;
+    }
+    .chart-tick {
+      fill: var(--muted-color);
+      font-size: 10.5px;
+      font-family: var(--sans-font);
+    }
+    .chart-label {
+      fill: var(--text-color);
+      font-size: 11.5px;
+      font-weight: 500;
+      font-family: var(--sans-font);
+    }
+    .chart-val {
+      fill: var(--text-color);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-family: var(--sans-font);
+    }
+    .chart-bar-primary { fill: var(--econ-red); }
+    .chart-bar-bench { fill: var(--chart-bench); }
+    .chart-line-primary { stroke: var(--econ-red); stroke-width: 2.5; fill: none; }
+    .chart-line-secondary { stroke: var(--econ-blue); stroke-width: 2; fill: none; }
+    .chart-dot-primary { fill: var(--econ-red); }
+    .chart-dot-secondary { fill: var(--econ-blue); }
+    .chart-source {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted-color);
+    }
+
+    .post-footer { padding-top: 6px; }
+    .empty-state {
+      padding: 28px 16px;
+      text-align: center;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--muted-color);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="masthead flex flex-wrap justify-between items-center gap-3">
+      <div>
+        <div class="flex items-center gap-2 flex-wrap" style="margin-bottom: 5px;">
+          <span class="econ-brand-pill">Reading Brief</span>
+          <a href="../index.html" class="action-btn">← All Daily Book Ideas</a>
+        </div>
+        <h1 class="masthead-title">Daily Book Ideas</h1>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <div class="style-switch" role="group" aria-label="Editorial theme">
+          <button type="button" id="styleBtnEconomist" class="style-switch-btn active" aria-pressed="true" onclick="setStyle('economist')">Economist</button>
+          <button type="button" id="styleBtnFt" class="style-switch-btn" aria-pressed="false" onclick="setStyle('ft')">FT</button>
+        </div>
+        <button type="button" class="action-btn" onclick="copyShareLink()" title="Copy entry link">Copy Link</button>
+        <div id="copyToast" class="hidden toast-pill" role="status" aria-live="polite">Copied!</div>
+        <button type="button" id="themeToggleBtn" class="action-btn" onclick="toggleTheme()">Dark Mode</button>
+      </div>
+    </header>
+
+    <main class="grid-1">
+      <article class="wiki-card">
+        <div class="flex items-start justify-between gap-3 post-header static-header">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">COMMUNICATION · READER PICK · 2007</div>
+            <h2 class="post-title">The Curse of Knowledge makes experts sound like Morse code</h2>
+            <div class="post-subline muted-text">
+              <span><strong>Made to Stick: Why Some Ideas Survive and Others Die</strong> · Chip Heath and Dan Heath</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row">
+              <a class="category-tag" href="../index.html#tag=communication">#communication</a> <a class="category-tag" href="../index.html#tag=cognitive-bias">#cognitive-bias</a> <a class="category-tag" href="../index.html#tag=leadership">#leadership</a> <a class="category-tag" href="../index.html#tag=decision-science">#decision-science</a> <a class="category-tag" href="../index.html#tag=reader-pick">#reader-pick</a>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right">
+            <div class="font-mono">2026-11-27</div>
+            <div class="post-word-count">634 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-27-curse-of-knowledge" class="markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Ever notice how the smartest specialist in the room is often the hardest person to understand? We usually blame laziness or bad slides, yet in Made to Stick, Stanford professor Chip Heath and business educator Dan Heath argue the real culprit is cognitive: the &quot;Curse of Knowledge,&quot; a bias first named by behavioral economists Colin Camerer, George Loewenstein, and Martin Weber in 1989.</p>
+<p class="md-p">Once you understand a strategy, architecture, or market deeply, your brain loses the ability to un-know it and imagine how the world looks to someone hearing it for the first time. Experts speak in compressed abstractions—&quot;synergies,&quot; &quot;platform leverage,&quot; &quot;end-to-end orchestration&quot;—that sound crystal clear in their own heads because they unconsciously supply all the concrete context underneath. Their audience, lacking that hidden scaffolding, hears noise. The Heath brothers argue you cannot simply will the curse away; you have to translate abstract expertise back into concrete, sensory language—the heart of their SUCCESs framework (Simple, Unexpected, Concrete, Credible, Emotional, Stories).</p>
+          </div>
+          <figure class="econ-chart-box">
+            <div class="econ-chart-bar"></div>
+            <h5 class="chart-title">A 20-to-1 gap between intent and clarity</h5>
+            <p class="chart-subtitle">Share of tapped songs correctly identified in Elizabeth Newton&#x27;s 1990 Stanford study (%)</p>
+            
+            <div class="chart-svg-wrap">
+              <svg viewBox="0 0 680 104" class="econ-svg" role="img" aria-label="A 20-to-1 gap between intent and clarity">
+<line x1="260.0" y1="14" x2="260.0" y2="94" class="chart-grid"></line>
+<text x="260.0" y="11" text-anchor="middle" class="chart-tick">0%</text>
+<line x1="351.5" y1="14" x2="351.5" y2="94" class="chart-grid"></line>
+<text x="351.5" y="11" text-anchor="middle" class="chart-tick">25%</text>
+<line x1="443.0" y1="14" x2="443.0" y2="94" class="chart-grid"></line>
+<text x="443.0" y="11" text-anchor="middle" class="chart-tick">50%</text>
+<line x1="534.5" y1="14" x2="534.5" y2="94" class="chart-grid"></line>
+<text x="534.5" y="11" text-anchor="middle" class="chart-tick">75%</text>
+<line x1="626.0" y1="14" x2="626.0" y2="94" class="chart-grid"></line>
+<text x="626.0" y="11" text-anchor="middle" class="chart-tick">100%</text>
+<text x="248" y="43.3" text-anchor="end" class="chart-label">Tappers&#x27; predicted success rate</text>
+<rect x="260" y="30.0" width="183.0" height="18" rx="1.5" class="chart-bar-bench"></rect>
+<text x="449.0" y="43.3" class="chart-val">50%</text>
+<text x="248" y="77.3" text-anchor="end" class="chart-label">Listeners&#x27; actual success rate (3 of 120)</text>
+<rect x="260" y="64.0" width="9.2" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="275.1" y="77.3" class="chart-val">2.5%</text>
+</svg>
+            </div>
+            <div class="chart-source">Source: Chip Heath &amp; Dan Heath, Made to Stick (Jan 2007); Elizabeth Newton (1990)</div>
+          </figure>
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In the book&#x27;s Introduction, the Heath brothers anchor the bias in a 1990 Stanford psychology dissertation by Elizabeth Newton. Newton paired participants into &quot;tappers&quot; and &quot;listeners.&quot; Each tapper picked a familiar tune from a list of 25 classics—such as &quot;Happy Birthday to You&quot; or &quot;The Star-Spangled Banner&quot;—and tapped its rhythm on a table while the listener tried to name the song.</p>
+<p class="md-p">Across 120 tapped songs, listeners guessed correctly just 3 times—a dismal 2.5% hit rate. Yet before listeners guessed, tappers predicted they would nail the song 50% of the time, off by a factor of twenty. Why the gulf? While tapping, tappers could not stop hearing the full melody and lyrics booming inside their heads; to them, the song was unmistakable. Listeners heard only a baffling string of erratic knocks, like broken Morse code. Every strategy memo, engineering spec, or board deck written by an insider risks the same trap: the author hears the symphony while the room hears taps.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Treating communication failure as a structural cognitive bias—rather than a character flaw—explains why smart organizations constantly misalign. CEOs spend months debating a turnaround plan and then announce a three-word slogan at an all-hands, baffled when frontline teams shrug and keep doing yesterday&#x27;s work. Product engineers ship interfaces that feel &quot;intuitive&quot; only to people who already know the data model.</p>
+<p class="md-p">Because expertise is irreversible, good intentions never cure the curse; only concrete translation does. Concrete images, vivid constraints, and specific stories act as a shared language that both novices and experts process on equal footing. John F. Kennedy&#x27;s 1961 pledge—landing a man on the Moon and returning him safely to Earth before the decade&#x27;s end—stuck not because it dumbed down rocket science, but because it replaced abstract aerospace jargon with a sensory target everyone could picture.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Concreteness is not a universal solvent, and pushing it too far can backfire. Among peers who already share deep domain fluency—surgeons in an operating room, traders on a desk, or distributed-systems engineers debugging an outage—dense jargon and high-level abstractions are not a curse; they are high-bandwidth compression that saves vital time and precision.</p>
+<p class="md-p">Oversimplifying complex realities into sticky slogans also carries real strategic risk. A memorable soundbite can flatten crucial edge cases, conceal statistical uncertainty, or lock an organization into an overly rigid framing when conditions change. Worse, as critics of persuasion frameworks note, the same sticky mechanics that help good ideas travel—vivid anecdotes and emotional punch—spread urban legends and misleading narratives just as effortlessly. The real leadership skill is not abandoning abstraction, but knowing when you are speaking to fellow tappers versus listeners.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“Once we know something, we find it hard to imagine what it was like not to know it. Our knowledge has &#x27;cursed&#x27; us. And it becomes difficult for us to share our knowledge with others, because we can&#x27;t readily re-create our listeners&#x27; state of mind.”</p>
+            <footer>— Chip Heath and Dan Heath, Made to Stick (2007), Introduction</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-end gap-2 muted-text">
+            <span class="font-mono" style="font-size: 11px;">#2026-11-27-curse-of-knowledge</span>
+          </div>
+        </div>
+      </article>
+    </main>
+  </div>
+  <script>
+    function getCookie(name) {
+      try {
+        var prefix = encodeURIComponent(name) + '=';
+        var parts = document.cookie ? document.cookie.split(';') : [];
+        for (var i = 0; i < parts.length; i++) {
+          var c = parts[i].trim();
+          if (c.indexOf(prefix) === 0) {
+            return decodeURIComponent(c.slice(prefix.length));
+          }
+        }
+      } catch (e) {}
+      return null;
+    }
+    function setCookie(name, value) {
+      try {
+        document.cookie =
+          encodeURIComponent(name) + '=' + encodeURIComponent(value) +
+          '; max-age=31536000; path=/; SameSite=Lax';
+      } catch (e) {}
+    }
+    function getPref(k) {
+      var fromCookie = getCookie(k);
+      if (fromCookie !== null) return fromCookie;
+      try { return window.localStorage.getItem(k); } catch (e) { return null; }
+    }
+    function setPref(k, v) {
+      setCookie(k, v);
+      try { window.localStorage.setItem(k, v); } catch (e) {}
+    }
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      var btn = document.getElementById('themeToggleBtn');
+      if (btn) btn.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
+    function toggleTheme() {
+      var cur = document.documentElement.getAttribute('data-theme') || 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      setPref('book_ideas_theme', next);
+    }
+    function applyStyle(style) {
+      var normalized = style === 'ft' ? 'ft' : 'economist';
+      document.documentElement.setAttribute('data-style', normalized);
+      var econBtn = document.getElementById('styleBtnEconomist');
+      var ftBtn = document.getElementById('styleBtnFt');
+      if (econBtn) {
+        econBtn.classList.toggle('active', normalized === 'economist');
+        econBtn.setAttribute('aria-pressed', normalized === 'economist' ? 'true' : 'false');
+      }
+      if (ftBtn) {
+        ftBtn.classList.toggle('active', normalized === 'ft');
+        ftBtn.setAttribute('aria-pressed', normalized === 'ft' ? 'true' : 'false');
+      }
+    }
+    function setStyle(style) {
+      applyStyle(style);
+      setPref('book_ideas_style', style === 'ft' ? 'ft' : 'economist');
+    }
+    function copyShareLink() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          var toast = document.getElementById('copyToast');
+          if (!toast) return;
+          toast.classList.remove('hidden');
+          setTimeout(function() { toast.classList.add('hidden'); }, 1600);
+        }).catch(function() {});
+      }
+    }
+    (function init() {
+      var savedTheme = getPref('book_ideas_theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') applyTheme(savedTheme);
+      var savedStyle = getPref('book_ideas_style');
+      applyStyle(savedStyle === 'ft' ? 'ft' : 'economist');
+    })();
+
+  </script>
+</body>
+</html>

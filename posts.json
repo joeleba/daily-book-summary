@@ -1,7 +1,6 @@
 {
-  "updated_at": "2026-11-26",
+  "updated_at": "2026-11-27",
   "queue": [
-    "Made to Stick",
     "Never Split the Difference",
     "Big Debt Crises — Ray Dalio",
     "The Changing World Order — Ray Dalio"
@@ -242,6 +241,54 @@
       "argument_against": "Critics such as Jeffrey Sachs (in a sharp 2012 Foreign Affairs review) and Francis Fukuyama argue that Why Nations Fail turns a vital insight into a monocausal dogma. First, China's rise poses an awkward puzzle: under an authoritarian, politically \"extractive\" Communist Party, China lifted hundreds of millions out of poverty and scaled world-class infrastructure and frontier manufacturing. Acemoglu and Robinson counter that authoritarian \"catch-up growth\" eventually stalls without political pluralism—yet China has sustained industrial upgrading longer than early institutionalists expected.\n\nSkeptics also note that dismissing geography and administrative state capacity understates real traps: landlocked nations without navigable ports, severe malaria burdens, or weak bureaucracies face steep headwinds that formal laws alone cannot erase. Moreover, East Asian tigers—such as 1960s South Korea before democratization, and high-income Singapore—built strong, centralized state capacity and industrial momentum without Western-style multiparty pluralism.",
       "quote": "Nations fail today because their extractive economic institutions do not create the incentives needed for people to save, invest, and innovate. Extractive political institutions support these economic institutions by cementing the power of those who benefit from the extraction.",
       "quote_source": "Daron Acemoglu and James A. Robinson, Why Nations Fail (2012), Chapter 13",
+      "fact_checked": true
+    },
+    {
+      "id": "2026-11-27-curse-of-knowledge",
+      "date": "2026-11-27",
+      "title": "The Curse of Knowledge makes experts sound like Morse code",
+      "book": "Made to Stick: Why Some Ideas Survive and Others Die",
+      "author": "Chip Heath and Dan Heath",
+      "award": "Reader Pick · 2007",
+      "tags": [
+        "#communication",
+        "#cognitive-bias",
+        "#leadership",
+        "#decision-science",
+        "#reader-pick"
+      ],
+      "core_idea": "Ever notice how the smartest specialist in the room is often the hardest person to understand? We usually blame laziness or bad slides, yet in Made to Stick, Stanford professor Chip Heath and business educator Dan Heath argue the real culprit is cognitive: the \"Curse of Knowledge,\" a bias first named by behavioral economists Colin Camerer, George Loewenstein, and Martin Weber in 1989.\n\nOnce you understand a strategy, architecture, or market deeply, your brain loses the ability to un-know it and imagine how the world looks to someone hearing it for the first time. Experts speak in compressed abstractions—\"synergies,\" \"platform leverage,\" \"end-to-end orchestration\"—that sound crystal clear in their own heads because they unconsciously supply all the concrete context underneath. Their audience, lacking that hidden scaffolding, hears noise. The Heath brothers argue you cannot simply will the curse away; you have to translate abstract expertise back into concrete, sensory language—the heart of their SUCCESs framework (Simple, Unexpected, Concrete, Credible, Emotional, Stories).",
+      "chart": {
+        "type": "hbar",
+        "title": "A 20-to-1 gap between intent and clarity",
+        "subtitle": "Share of tapped songs correctly identified in Elizabeth Newton's 1990 Stanford study (%)",
+        "unit": "%",
+        "max": 100,
+        "ticks": [
+          0,
+          25,
+          50,
+          75,
+          100
+        ],
+        "bars": [
+          {
+            "label": "Tappers' predicted success rate",
+            "value": 50,
+            "benchmark": true
+          },
+          {
+            "label": "Listeners' actual success rate (3 of 120)",
+            "value": 2.5
+          }
+        ],
+        "source": "Chip Heath & Dan Heath, Made to Stick (Jan 2007); Elizabeth Newton (1990)"
+      },
+      "example": "In the book's Introduction, the Heath brothers anchor the bias in a 1990 Stanford psychology dissertation by Elizabeth Newton. Newton paired participants into \"tappers\" and \"listeners.\" Each tapper picked a familiar tune from a list of 25 classics—such as \"Happy Birthday to You\" or \"The Star-Spangled Banner\"—and tapped its rhythm on a table while the listener tried to name the song.\n\nAcross 120 tapped songs, listeners guessed correctly just 3 times—a dismal 2.5% hit rate. Yet before listeners guessed, tappers predicted they would nail the song 50% of the time, off by a factor of twenty. Why the gulf? While tapping, tappers could not stop hearing the full melody and lyrics booming inside their heads; to them, the song was unmistakable. Listeners heard only a baffling string of erratic knocks, like broken Morse code. Every strategy memo, engineering spec, or board deck written by an insider risks the same trap: the author hears the symphony while the room hears taps.",
+      "argument_for": "Treating communication failure as a structural cognitive bias—rather than a character flaw—explains why smart organizations constantly misalign. CEOs spend months debating a turnaround plan and then announce a three-word slogan at an all-hands, baffled when frontline teams shrug and keep doing yesterday's work. Product engineers ship interfaces that feel \"intuitive\" only to people who already know the data model.\n\nBecause expertise is irreversible, good intentions never cure the curse; only concrete translation does. Concrete images, vivid constraints, and specific stories act as a shared language that both novices and experts process on equal footing. John F. Kennedy's 1961 pledge—landing a man on the Moon and returning him safely to Earth before the decade's end—stuck not because it dumbed down rocket science, but because it replaced abstract aerospace jargon with a sensory target everyone could picture.",
+      "argument_against": "Concreteness is not a universal solvent, and pushing it too far can backfire. Among peers who already share deep domain fluency—surgeons in an operating room, traders on a desk, or distributed-systems engineers debugging an outage—dense jargon and high-level abstractions are not a curse; they are high-bandwidth compression that saves vital time and precision.\n\nOversimplifying complex realities into sticky slogans also carries real strategic risk. A memorable soundbite can flatten crucial edge cases, conceal statistical uncertainty, or lock an organization into an overly rigid framing when conditions change. Worse, as critics of persuasion frameworks note, the same sticky mechanics that help good ideas travel—vivid anecdotes and emotional punch—spread urban legends and misleading narratives just as effortlessly. The real leadership skill is not abandoning abstraction, but knowing when you are speaking to fellow tappers versus listeners.",
+      "quote": "Once we know something, we find it hard to imagine what it was like not to know it. Our knowledge has 'cursed' us. And it becomes difficult for us to share our knowledge with others, because we can't readily re-create our listeners' state of mind.",
+      "quote_source": "Chip Heath and Dan Heath, Made to Stick (2007), Introduction",
       "fact_checked": true
     }
   ]

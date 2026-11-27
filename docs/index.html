@@ -686,18 +686,18 @@
         <div class="flex items-center gap-2 flex-wrap" style="margin-bottom: 5px;">
           <span class="econ-brand-pill">Reading Brief</span>
           <div class="stat-strip" aria-label="Reading log counts">
-            <span class="stat-item">Posts <strong id="hdrPostsCount">6</strong></span>
+            <span class="stat-item">Posts <strong id="hdrPostsCount">7</strong></span>
             <span class="muted-text">·</span>
-            <span class="stat-item">Books <strong>6</strong></span>
+            <span class="stat-item">Books <strong>7</strong></span>
             <span class="muted-text">·</span>
-            <span class="stat-item">Tags <strong>23</strong></span>
+            <span class="stat-item">Tags <strong>28</strong></span>
             <span class="muted-text">·</span>
-            <span class="stat-item">Queued <strong>4</strong></span>
+            <span class="stat-item">Queued <strong>3</strong></span>
           </div>
         </div>
         <h1 class="masthead-title">Daily Book Ideas</h1>
         <div style="font-size: 12.5px; margin-top: 3px;" class="muted-text">
-          One distilled book idea every day · updated <code>2026-11-26</code>
+          One distilled book idea every day · updated <code>2026-11-27</code>
         </div>
       </div>
       <div class="flex items-center gap-2 flex-wrap">
@@ -720,7 +720,7 @@
         <button type="button" class="action-btn" onclick="expandCollapseAll(false)">Collapse All</button>
         <button type="button" class="action-btn" onclick="resetFilters()">Reset</button>
       </div>
-      <div id="visibleCountLabel" class="muted-text" style="font-size: 12px;">Showing 6 of 6</div>
+      <div id="visibleCountLabel" class="muted-text" style="font-size: 12px;">Showing 7 of 7</div>
     </div>
 
     <!-- Hashtag Filter Bar (collapsible on mobile) -->
@@ -729,20 +729,23 @@
         <span class="flex items-center gap-2">
           <span>Filter by tag</span>
           <span id="tagToggleActive" class="tag-toggle-active">#all</span>
-          <span class="pill-count">23</span>
+          <span class="pill-count">28</span>
         </span>
         <span class="tag-toggle-chevron" aria-hidden="true">▾</span>
       </button>
       <div id="tagFilterBar" class="tag-filter-bar" role="group" aria-label="Filter by hashtag">
         <button type="button" class="tag-pill active" data-tag="all" onclick="setTagFilter('all')">
-          #all <span class="pill-count">6</span>
+          #all <span class="pill-count">7</span>
         </button>
       <button type="button" class="tag-pill" data-tag="#geopolitics" onclick="setTagFilter(this.getAttribute('data-tag'))">#geopolitics <span class="pill-count">4</span></button>
       <button type="button" class="tag-pill" data-tag="#macroeconomics" onclick="setTagFilter(this.getAttribute('data-tag'))">#macroeconomics <span class="pill-count">3</span></button>
       <button type="button" class="tag-pill" data-tag="#strategy" onclick="setTagFilter(this.getAttribute('data-tag'))">#strategy <span class="pill-count">3</span></button>
       <button type="button" class="tag-pill" data-tag="#arbitrage" onclick="setTagFilter(this.getAttribute('data-tag'))">#arbitrage <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#business-strategy" onclick="setTagFilter(this.getAttribute('data-tag'))">#business-strategy <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#cognitive-bias" onclick="setTagFilter(this.getAttribute('data-tag'))">#cognitive-bias <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#commodities" onclick="setTagFilter(this.getAttribute('data-tag'))">#commodities <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#communication" onclick="setTagFilter(this.getAttribute('data-tag'))">#communication <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#decision-science" onclick="setTagFilter(this.getAttribute('data-tag'))">#decision-science <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#ft-2012-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2012-shortlist <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#ft-2019-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2019-shortlist <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#ft-2021-shortlist" onclick="setTagFilter(this.getAttribute('data-tag'))">#ft-2021-shortlist <span class="pill-count">1</span></button>
@@ -753,9 +756,11 @@
       <button type="button" class="tag-pill" data-tag="#infrastructure" onclick="setTagFilter(this.getAttribute('data-tag'))">#infrastructure <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#innovation" onclick="setTagFilter(this.getAttribute('data-tag'))">#innovation <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#institutions" onclick="setTagFilter(this.getAttribute('data-tag'))">#institutions <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#leadership" onclick="setTagFilter(this.getAttribute('data-tag'))">#leadership <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#modularity" onclick="setTagFilter(this.getAttribute('data-tag'))">#modularity <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#problem-solving" onclick="setTagFilter(this.getAttribute('data-tag'))">#problem-solving <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#project-management" onclick="setTagFilter(this.getAttribute('data-tag'))">#project-management <span class="pill-count">1</span></button>
+      <button type="button" class="tag-pill" data-tag="#reader-pick" onclick="setTagFilter(this.getAttribute('data-tag'))">#reader-pick <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#risk" onclick="setTagFilter(this.getAttribute('data-tag'))">#risk <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#semiconductors" onclick="setTagFilter(this.getAttribute('data-tag'))">#semiconductors <span class="pill-count">1</span></button>
       <button type="button" class="tag-pill" data-tag="#state-capacity" onclick="setTagFilter(this.getAttribute('data-tag'))">#state-capacity <span class="pill-count">1</span></button>
@@ -765,6 +770,101 @@
 
     <!-- Posts Feed -->
     <main id="postsContainer" class="grid-1">
+      <article id="post-2026-11-27-curse-of-knowledge" class="wiki-card post-card" data-post-id="2026-11-27-curse-of-knowledge" data-tags="#communication,#cognitive-bias,#leadership,#decision-science,#reader-pick" data-book="Made to Stick: Why Some Ideas Survive and Others Die" data-search="2026-11-27 the curse of knowledge makes experts sound like morse code made to stick: why some ideas survive and others die chip heath and dan heath reader pick · 2007 #communication #cognitive-bias #leadership #decision-science #reader-pick ever notice how the smartest specialist in the room is often the hardest person to understand? we usually blame laziness or bad slides, yet in made to stick, stanford professor chip heath and business educator dan heath argue the real culprit is cognitive: the &quot;curse of knowledge,&quot; a bias first named by behavioral economists colin camerer, george loewenstein, and martin weber in 1989.
+
+once you understand a strategy, architecture, or market deeply, your brain loses the ability to un-know it and imagine how the world looks to someone hearing it for the first time. experts speak in compressed abstractions—&quot;synergies,&quot; &quot;platform leverage,&quot; &quot;end-to-end orchestration&quot;—that sound crystal clear in their own heads because they unconsciously supply all the concrete context underneath. their audience, lacking that hidden scaffolding, hears noise. the heath brothers argue you cannot simply will the curse away; you have to translate abstract expertise back into concrete, sensory language—the heart of their success framework (simple, unexpected, concrete, credible, emotional, stories). in the book&#x27;s introduction, the heath brothers anchor the bias in a 1990 stanford psychology dissertation by elizabeth newton. newton paired participants into &quot;tappers&quot; and &quot;listeners.&quot; each tapper picked a familiar tune from a list of 25 classics—such as &quot;happy birthday to you&quot; or &quot;the star-spangled banner&quot;—and tapped its rhythm on a table while the listener tried to name the song.
+
+across 120 tapped songs, listeners guessed correctly just 3 times—a dismal 2.5% hit rate. yet before listeners guessed, tappers predicted they would nail the song 50% of the time, off by a factor of twenty. why the gulf? while tapping, tappers could not stop hearing the full melody and lyrics booming inside their heads; to them, the song was unmistakable. listeners heard only a baffling string of erratic knocks, like broken morse code. every strategy memo, engineering spec, or board deck written by an insider risks the same trap: the author hears the symphony while the room hears taps. treating communication failure as a structural cognitive bias—rather than a character flaw—explains why smart organizations constantly misalign. ceos spend months debating a turnaround plan and then announce a three-word slogan at an all-hands, baffled when frontline teams shrug and keep doing yesterday&#x27;s work. product engineers ship interfaces that feel &quot;intuitive&quot; only to people who already know the data model.
+
+because expertise is irreversible, good intentions never cure the curse; only concrete translation does. concrete images, vivid constraints, and specific stories act as a shared language that both novices and experts process on equal footing. john f. kennedy&#x27;s 1961 pledge—landing a man on the moon and returning him safely to earth before the decade&#x27;s end—stuck not because it dumbed down rocket science, but because it replaced abstract aerospace jargon with a sensory target everyone could picture. concreteness is not a universal solvent, and pushing it too far can backfire. among peers who already share deep domain fluency—surgeons in an operating room, traders on a desk, or distributed-systems engineers debugging an outage—dense jargon and high-level abstractions are not a curse; they are high-bandwidth compression that saves vital time and precision.
+
+oversimplifying complex realities into sticky slogans also carries real strategic risk. a memorable soundbite can flatten crucial edge cases, conceal statistical uncertainty, or lock an organization into an overly rigid framing when conditions change. worse, as critics of persuasion frameworks note, the same sticky mechanics that help good ideas travel—vivid anecdotes and emotional punch—spread urban legends and misleading narratives just as effortlessly. the real leadership skill is not abandoning abstraction, but knowing when you are speaking to fellow tappers versus listeners. once we know something, we find it hard to imagine what it was like not to know it. our knowledge has &#x27;cursed&#x27; us. and it becomes difficult for us to share our knowledge with others, because we can&#x27;t readily re-create our listeners&#x27; state of mind.">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="true" aria-controls="body-2026-11-27-curse-of-knowledge" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+          <div class="min-w-0 flex-1">
+            <div class="kicker-line">COMMUNICATION · READER PICK · 2007</div>
+            <div class="flex items-center gap-2">
+              <span id="arrow-2026-11-27-curse-of-knowledge" class="chevron-wrap open">
+                <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                </svg>
+              </span>
+              <h2 class="post-title">The Curse of Knowledge makes experts sound like Morse code</h2>
+            </div>
+            <div class="post-subline muted-text">
+              <span><strong>Made to Stick: Why Some Ideas Survive and Others Die</strong> · Chip Heath and Dan Heath</span>
+            </div>
+            <div class="flex items-center gap-1-5 flex-wrap post-tags-row" onclick="event.stopPropagation()">
+              <button type="button" class="category-tag" data-tag="#communication" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #communication">#communication</button> <button type="button" class="category-tag" data-tag="#cognitive-bias" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #cognitive-bias">#cognitive-bias</button> <button type="button" class="category-tag" data-tag="#leadership" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #leadership">#leadership</button> <button type="button" class="category-tag" data-tag="#decision-science" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #decision-science">#decision-science</button> <button type="button" class="category-tag" data-tag="#reader-pick" onclick="filterByTag(this.getAttribute('data-tag'), event)" title="Filter #reader-pick">#reader-pick</button>
+            </div>
+          </div>
+          <div class="muted-text shrink-0 post-meta-right" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-end gap-1">
+              <span class="font-mono">2026-11-27</span>
+              <a class="more-pill" href="entries/2026-11-27-curse-of-knowledge.html" title="Open standalone entry page">Entry ↗</a>
+              <button type="button" class="more-pill" onclick="copyPostHashLink(this.closest('.post-card').getAttribute('data-post-id'), event)" title="Copy deep link (#post=2026-11-27-curse-of-knowledge)">#</button>
+            </div>
+            <div class="post-word-count">634 words</div>
+          </div>
+        </div>
+        <div id="body-2026-11-27-curse-of-knowledge" class="markdown-body post-body">
+          <div class="idea-section">
+            <h4 class="md-h2">Core Idea</h4>
+            <p class="md-p">Ever notice how the smartest specialist in the room is often the hardest person to understand? We usually blame laziness or bad slides, yet in Made to Stick, Stanford professor Chip Heath and business educator Dan Heath argue the real culprit is cognitive: the &quot;Curse of Knowledge,&quot; a bias first named by behavioral economists Colin Camerer, George Loewenstein, and Martin Weber in 1989.</p>
+<p class="md-p">Once you understand a strategy, architecture, or market deeply, your brain loses the ability to un-know it and imagine how the world looks to someone hearing it for the first time. Experts speak in compressed abstractions—&quot;synergies,&quot; &quot;platform leverage,&quot; &quot;end-to-end orchestration&quot;—that sound crystal clear in their own heads because they unconsciously supply all the concrete context underneath. Their audience, lacking that hidden scaffolding, hears noise. The Heath brothers argue you cannot simply will the curse away; you have to translate abstract expertise back into concrete, sensory language—the heart of their SUCCESs framework (Simple, Unexpected, Concrete, Credible, Emotional, Stories).</p>
+          </div>
+          <figure class="econ-chart-box">
+            <div class="econ-chart-bar"></div>
+            <h5 class="chart-title">A 20-to-1 gap between intent and clarity</h5>
+            <p class="chart-subtitle">Share of tapped songs correctly identified in Elizabeth Newton&#x27;s 1990 Stanford study (%)</p>
+            
+            <div class="chart-svg-wrap">
+              <svg viewBox="0 0 680 104" class="econ-svg" role="img" aria-label="A 20-to-1 gap between intent and clarity">
+<line x1="260.0" y1="14" x2="260.0" y2="94" class="chart-grid"></line>
+<text x="260.0" y="11" text-anchor="middle" class="chart-tick">0%</text>
+<line x1="351.5" y1="14" x2="351.5" y2="94" class="chart-grid"></line>
+<text x="351.5" y="11" text-anchor="middle" class="chart-tick">25%</text>
+<line x1="443.0" y1="14" x2="443.0" y2="94" class="chart-grid"></line>
+<text x="443.0" y="11" text-anchor="middle" class="chart-tick">50%</text>
+<line x1="534.5" y1="14" x2="534.5" y2="94" class="chart-grid"></line>
+<text x="534.5" y="11" text-anchor="middle" class="chart-tick">75%</text>
+<line x1="626.0" y1="14" x2="626.0" y2="94" class="chart-grid"></line>
+<text x="626.0" y="11" text-anchor="middle" class="chart-tick">100%</text>
+<text x="248" y="43.3" text-anchor="end" class="chart-label">Tappers&#x27; predicted success rate</text>
+<rect x="260" y="30.0" width="183.0" height="18" rx="1.5" class="chart-bar-bench"></rect>
+<text x="449.0" y="43.3" class="chart-val">50%</text>
+<text x="248" y="77.3" text-anchor="end" class="chart-label">Listeners&#x27; actual success rate (3 of 120)</text>
+<rect x="260" y="64.0" width="9.2" height="18" rx="1.5" class="chart-bar-primary"></rect>
+<text x="275.1" y="77.3" class="chart-val">2.5%</text>
+</svg>
+            </div>
+            <div class="chart-source">Source: Chip Heath &amp; Dan Heath, Made to Stick (Jan 2007); Elizabeth Newton (1990)</div>
+          </figure>
+          <div class="idea-section">
+            <h4 class="md-h2">Example from the Book</h4>
+            <p class="md-p">In the book&#x27;s Introduction, the Heath brothers anchor the bias in a 1990 Stanford psychology dissertation by Elizabeth Newton. Newton paired participants into &quot;tappers&quot; and &quot;listeners.&quot; Each tapper picked a familiar tune from a list of 25 classics—such as &quot;Happy Birthday to You&quot; or &quot;The Star-Spangled Banner&quot;—and tapped its rhythm on a table while the listener tried to name the song.</p>
+<p class="md-p">Across 120 tapped songs, listeners guessed correctly just 3 times—a dismal 2.5% hit rate. Yet before listeners guessed, tappers predicted they would nail the song 50% of the time, off by a factor of twenty. Why the gulf? While tapping, tappers could not stop hearing the full melody and lyrics booming inside their heads; to them, the song was unmistakable. Listeners heard only a baffling string of erratic knocks, like broken Morse code. Every strategy memo, engineering spec, or board deck written by an insider risks the same trap: the author hears the symphony while the room hears taps.</p>
+          </div>
+          <div class="idea-grid">
+            <div class="idea-box idea-box-for">
+              <h4 class="md-h2">Argue For</h4>
+              <p class="md-p">Treating communication failure as a structural cognitive bias—rather than a character flaw—explains why smart organizations constantly misalign. CEOs spend months debating a turnaround plan and then announce a three-word slogan at an all-hands, baffled when frontline teams shrug and keep doing yesterday&#x27;s work. Product engineers ship interfaces that feel &quot;intuitive&quot; only to people who already know the data model.</p>
+<p class="md-p">Because expertise is irreversible, good intentions never cure the curse; only concrete translation does. Concrete images, vivid constraints, and specific stories act as a shared language that both novices and experts process on equal footing. John F. Kennedy&#x27;s 1961 pledge—landing a man on the Moon and returning him safely to Earth before the decade&#x27;s end—stuck not because it dumbed down rocket science, but because it replaced abstract aerospace jargon with a sensory target everyone could picture.</p>
+            </div>
+            <div class="idea-box idea-box-against">
+              <h4 class="md-h2">Argue Against</h4>
+              <p class="md-p">Concreteness is not a universal solvent, and pushing it too far can backfire. Among peers who already share deep domain fluency—surgeons in an operating room, traders on a desk, or distributed-systems engineers debugging an outage—dense jargon and high-level abstractions are not a curse; they are high-bandwidth compression that saves vital time and precision.</p>
+<p class="md-p">Oversimplifying complex realities into sticky slogans also carries real strategic risk. A memorable soundbite can flatten crucial edge cases, conceal statistical uncertainty, or lock an organization into an overly rigid framing when conditions change. Worse, as critics of persuasion frameworks note, the same sticky mechanics that help good ideas travel—vivid anecdotes and emotional punch—spread urban legends and misleading narratives just as effortlessly. The real leadership skill is not abandoning abstraction, but knowing when you are speaking to fellow tappers versus listeners.</p>
+            </div>
+          </div>
+          <blockquote class="quote-block">
+            <p>“Once we know something, we find it hard to imagine what it was like not to know it. Our knowledge has &#x27;cursed&#x27; us. And it becomes difficult for us to share our knowledge with others, because we can&#x27;t readily re-create our listeners&#x27; state of mind.”</p>
+            <footer>— Chip Heath and Dan Heath, Made to Stick (2007), Introduction</footer>
+          </blockquote>
+          <div class="post-footer flex items-center justify-end gap-2 muted-text">
+            <span class="font-mono" style="font-size: 11px;">#2026-11-27-curse-of-knowledge</span>
+          </div>
+        </div>
+      </article>
       <article id="post-2026-11-26-inclusive-extractive-institutions" class="wiki-card post-card" data-post-id="2026-11-26-inclusive-extractive-institutions" data-tags="#macroeconomics,#geopolitics,#institutions,#strategy,#ft-2012-shortlist" data-book="Why Nations Fail: The Origins of Power, Prosperity, and Poverty" data-search="2026-11-26 inclusive institutions—not geography or culture—make nations rich why nations fail: the origins of power, prosperity, and poverty daron acemoglu and james a. robinson ft 2012 shortlist #macroeconomics #geopolitics #institutions #strategy #ft-2012-shortlist why are some countries rich and others poor? standard dinner-table explanations blame geography (tropics versus temperate zones), climate, natural resources, or national culture. in why nations fail—building on institutional research that helped earn daron acemoglu and james a. robinson (with simon johnson) the 2024 nobel memorial prize in economic sciences—the authors argue those stories get causality backward: long-run prosperity is decided by human-made institutions.
 
 acemoglu and robinson divide societies into two types. inclusive economic institutions protect property rights, enforce impartial contracts, and let anyone start a business or patent an idea, backed by inclusive political institutions that distribute power broadly with checks and balances. extractive institutions concentrate power in a narrow elite that rigs markets, protects monopolies, and skims wealth from the majority. because elites fear &quot;creative destruction&quot;—new technologies and upstarts that can topple incumbents—extractive regimes actively block innovation even when it would expand the whole economy. chapter 1 (&quot;so close and yet so different&quot;) opens on a single border fence cutting through the desert city of nogales. north of the wire sits nogales, arizona; just steps south lies nogales, sonora. both halves share the exact same geography, climate, disease environment, and largely the same cultural heritage and ancestry.
@@ -774,11 +874,11 @@ yet the gap across the fence is stark. on the authors&#x27; 2012 figures, the av
 for mba leaders and capital allocators, the lesson extends straight to emerging markets and corporate strategy: headline growth under crony rules rarely compounds into frontier innovation because insecure property rights and political favoritism choke off broad entrepreneurship. even in 17th-century england, acemoglu and robinson show, it took the glorious revolution of 1688 to curb royal monopolies, empower parliament, and unlock the industrial revolution. critics such as jeffrey sachs (in a sharp 2012 foreign affairs review) and francis fukuyama argue that why nations fail turns a vital insight into a monocausal dogma. first, china&#x27;s rise poses an awkward puzzle: under an authoritarian, politically &quot;extractive&quot; communist party, china lifted hundreds of millions out of poverty and scaled world-class infrastructure and frontier manufacturing. acemoglu and robinson counter that authoritarian &quot;catch-up growth&quot; eventually stalls without political pluralism—yet china has sustained industrial upgrading longer than early institutionalists expected.
 
 skeptics also note that dismissing geography and administrative state capacity understates real traps: landlocked nations without navigable ports, severe malaria burdens, or weak bureaucracies face steep headwinds that formal laws alone cannot erase. moreover, east asian tigers—such as 1960s south korea before democratization, and high-income singapore—built strong, centralized state capacity and industrial momentum without western-style multiparty pluralism. nations fail today because their extractive economic institutions do not create the incentives needed for people to save, invest, and innovate. extractive political institutions support these economic institutions by cementing the power of those who benefit from the extraction.">
-        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="true" aria-controls="body-2026-11-26-inclusive-extractive-institutions" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
+        <div class="flex items-start justify-between gap-3 post-header" tabindex="0" role="button" aria-expanded="false" aria-controls="body-2026-11-26-inclusive-extractive-institutions" onclick="togglePost(this.closest('.post-card').getAttribute('data-post-id'))" onkeydown="handlePostKeydown(event, this.closest('.post-card').getAttribute('data-post-id'))">
           <div class="min-w-0 flex-1">
             <div class="kicker-line">MACROECONOMICS · FT 2012 SHORTLIST</div>
             <div class="flex items-center gap-2">
-              <span id="arrow-2026-11-26-inclusive-extractive-institutions" class="chevron-wrap open">
+              <span id="arrow-2026-11-26-inclusive-extractive-institutions" class="chevron-wrap">
                 <svg class="chevron-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
                 </svg>
@@ -801,7 +901,7 @@ skeptics also note that dismissing geography and administrative state capacity u
             <div class="post-word-count">618 words</div>
           </div>
         </div>
-        <div id="body-2026-11-26-inclusive-extractive-institutions" class="markdown-body post-body">
+        <div id="body-2026-11-26-inclusive-extractive-institutions" class="hidden markdown-body post-body">
           <div class="idea-section">
             <h4 class="md-h2">Core Idea</h4>
             <p class="md-p">Why are some countries rich and others poor? Standard dinner-table explanations blame geography (tropics versus temperate zones), climate, natural resources, or national culture. In Why Nations Fail—building on institutional research that helped earn Daron Acemoglu and James A. Robinson (with Simon Johnson) the 2024 Nobel Memorial Prize in Economic Sciences—the authors argue those stories get causality backward: long-run prosperity is decided by human-made institutions.</p>
