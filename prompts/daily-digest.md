@@ -8,8 +8,9 @@ Prepare today's morning book-idea digest (< 1,000 words) and save it to `posts.j
 2. **Drafting the Summary (500–800 words; hard cap 1,000 words)**
    - Pick 1 compelling unseen idea for today.
    - Write with a **"cocktail-party / dinner-table" bar** in mind: give the reader enough focused, memorable, well-structured material to hold the floor for 60–90 seconds with smart peers — leading with a sharp hook/framing, anchoring it in ONE vivid, retellable concrete example (specific names, places, and 1–2 sticky numbers rather than dense data dumps), anticipating the obvious pushback so they sound nuanced rather than one-sided, and closing with a punchy line worth saying aloud.
+   - Make every summary **self-contained and whole**: if you introduce a named framework, acronym, taxonomy, or multi-part model from the book (e.g., SUCCESs, Porter's Five Forces, OODA loop), do not just name-drop it in passing—unpack each element with concise markdown bullet points (`- **Label:** ...`, 1–2 quick sentences per point) so the entry stands completely on its own, or omit the mention if it isn't central to the idea. Stay within the overall word budget (< 1,000 words).
    - Structure it into:
-     - **Core idea**: sharp framing/hook + plain-English thesis someone can explain in 2–3 sentences.
+     - **Core idea**: sharp framing/hook + plain-English thesis someone can explain in 2–3 sentences (plus concise `- **Label:** ...` bullets if the core idea centers on an acronym or multi-part framework).
      - **Concrete example**: ONE vivid, retellable example from the book that substantiates the idea.
      - **Argument for**: the strongest supporting case.
      - **Argument against**: the sharpest counterargument/limit to show nuance.

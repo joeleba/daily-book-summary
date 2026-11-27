@@ -41,6 +41,15 @@ def split_paragraphs(text: str) -> list[str]:
     return [b.strip() for b in re.split(r"\n\s*\n", (text or "").strip()) if b.strip()]
 
 
+def strip_inline_markdown(text: str) -> str:
+    return re.sub(r"\*\*(.+?)\*\*", r"\1", text or "")
+
+
+def render_inline_html(text: str) -> str:
+    escaped = esc(text)
+    return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
+
+
 def count_words(post: dict[str, Any]) -> int:
     fields = [
         post.get("core_idea", ""),
@@ -49,7 +58,9 @@ def count_words(post: dict[str, Any]) -> int:
         post.get("argument_against", ""),
         post.get("quote", ""),
     ]
-    return len(" ".join(fields).split())
+    cleaned = re.sub(r"(?m)^\s*[-*•]\s+", "", "\n".join(fields))
+    cleaned = strip_inline_markdown(cleaned)
+    return len(cleaned.split())
 
 
 def format_num(value: float | int, unit: str = "") -> str:
@@ -192,16 +203,58 @@ def render_email_chart_html(chart: dict[str, Any] | None, entry_url: str) -> str
 
 
 def render_paragraphs_html(text: str) -> str:
-    paras = split_paragraphs(text)
-    if not paras:
+    blocks = split_paragraphs(text)
+    if not blocks:
         return ""
     out: list[str] = []
-    for idx, p in enumerate(paras):
-        margin_top = "10px" if idx > 0 else "0"
-        out.append(
-            f'<p style="margin:{margin_top} 0 0 0;font-family:Georgia,\'Times New Roman\',serif;'
-            f'font-size:15.5px;line-height:1.65;color:#1a1816;">{esc(p)}</p>'
-        )
+    elem_idx = 0
+    for block in blocks:
+        lines = [ln.strip() for ln in block.splitlines() if ln.strip()]
+        buf_p: list[str] = []
+        buf_li: list[str] = []
+
+        def flush_p() -> None:
+            nonlocal elem_idx
+            if not buf_p:
+                return
+            margin_top = "10px" if elem_idx > 0 else "0"
+            out.append(
+                f'<p style="margin:{margin_top} 0 0 0;font-family:Georgia,\'Times New Roman\',serif;'
+                f'font-size:15.5px;line-height:1.65;color:#1a1816;">{render_inline_html(" ".join(buf_p))}</p>'
+            )
+            buf_p.clear()
+            elem_idx += 1
+
+        def flush_li() -> None:
+            nonlocal elem_idx
+            if not buf_li:
+                return
+            margin_top = "10px" if elem_idx > 0 else "0"
+            items_html = []
+            for li_idx, item in enumerate(buf_li):
+                li_mt = "6px" if li_idx > 0 else "0"
+                items_html.append(
+                    f'<li style="margin:{li_mt} 0 0 0;font-family:Georgia,\'Times New Roman\',serif;'
+                    f'font-size:15.5px;line-height:1.65;color:#1a1816;">{render_inline_html(item)}</li>'
+                )
+            out.append(
+                f'<ul style="margin:{margin_top} 0 0 0;padding-left:20px;color:#990f3d;">'
+                + "".join(items_html)
+                + "</ul>"
+            )
+            buf_li.clear()
+            elem_idx += 1
+
+        for ln in lines:
+            m = re.match(r"^[-*•]\s+(.*)$", ln)
+            if m:
+                flush_p()
+                buf_li.append(m.group(1).strip())
+            else:
+                flush_li()
+                buf_p.append(ln)
+        flush_p()
+        flush_li()
     return "\n".join(out)
 
 
@@ -217,7 +270,7 @@ def render_email_html(post: dict[str, Any], site_base_url: str) -> str:
     date = str(post.get("date") or "")
     words = count_words(post)
     tags = [str(t).strip().lower() for t in (post.get("tags") or []) if str(t).strip()]
-    preheader = " ".join(split_paragraphs(str(post.get("core_idea") or "")))[:160]
+    preheader = strip_inline_markdown(" ".join(split_paragraphs(str(post.get("core_idea") or ""))))[:160]
 
     chart_html = render_email_chart_html(post.get("chart"), entry_url)
 
@@ -367,16 +420,16 @@ def render_email_text(post: dict[str, Any], site_base_url: str) -> str:
         f"{post.get('book', '')} — {post.get('author', '')}",
         "",
         "CORE IDEA",
-        str(post.get("core_idea") or "").strip(),
+        strip_inline_markdown(str(post.get("core_idea") or "").strip()),
         "",
         "EXAMPLE FROM THE BOOK",
-        str(post.get("example") or "").strip(),
+        strip_inline_markdown(str(post.get("example") or "").strip()),
         "",
         "ARGUE FOR",
-        str(post.get("argument_for") or "").strip(),
+        strip_inline_markdown(str(post.get("argument_for") or "").strip()),
         "",
         "ARGUE AGAINST",
-        str(post.get("argument_against") or "").strip(),
+        strip_inline_markdown(str(post.get("argument_against") or "").strip()),
     ]
     quote = str(post.get("quote") or "").strip()
     if quote:

@@ -97,7 +97,8 @@
       font-size: 19px;
       letter-spacing: -0.01em;
     }
-    html[data-style="ft"] .markdown-body .md-p {
+    html[data-style="ft"] .markdown-body .md-p,
+    html[data-style="ft"] .markdown-body .md-ul {
       font-family: var(--body-serif-font);
       font-size: 15px;
       line-height: 1.68;
@@ -533,7 +534,21 @@
       margin: 0 0 5px 0;
     }
     .markdown-body .md-p { margin: 0; }
-    .markdown-body .md-p + .md-p, .md-p + .md-p { margin-top: 9px; }
+    .markdown-body .md-p + .md-p, .md-p + .md-p,
+    .markdown-body .md-p + .md-ul, .markdown-body .md-ul + .md-p { margin-top: 9px; }
+    .markdown-body .md-ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .markdown-body .md-ul li {
+      margin: 0;
+    }
+    .markdown-body .md-ul li + li {
+      margin-top: 6px;
+    }
+    .markdown-body .md-ul li::marker {
+      color: var(--econ-red);
+    }
     .idea-section { margin-bottom: 14px; }
 
     .idea-grid {
@@ -714,14 +729,22 @@
           </div>
           <div class="muted-text shrink-0 post-meta-right">
             <div class="font-mono">2026-11-27</div>
-            <div class="post-word-count">634 words</div>
+            <div class="post-word-count">791 words</div>
           </div>
         </div>
         <div id="body-2026-11-27-curse-of-knowledge" class="markdown-body post-body">
           <div class="idea-section">
             <h4 class="md-h2">Core Idea</h4>
             <p class="md-p">Ever notice how the smartest specialist in the room is often the hardest person to understand? We usually blame laziness or bad slides, yet in Made to Stick, Stanford professor Chip Heath and business educator Dan Heath argue the real culprit is cognitive: the &quot;Curse of Knowledge,&quot; a bias first named by behavioral economists Colin Camerer, George Loewenstein, and Martin Weber in 1989.</p>
-<p class="md-p">Once you understand a strategy, architecture, or market deeply, your brain loses the ability to un-know it and imagine how the world looks to someone hearing it for the first time. Experts speak in compressed abstractions—&quot;synergies,&quot; &quot;platform leverage,&quot; &quot;end-to-end orchestration&quot;—that sound crystal clear in their own heads because they unconsciously supply all the concrete context underneath. Their audience, lacking that hidden scaffolding, hears noise. The Heath brothers argue you cannot simply will the curse away; you have to translate abstract expertise back into concrete, sensory language—the heart of their SUCCESs framework (Simple, Unexpected, Concrete, Credible, Emotional, Stories).</p>
+<p class="md-p">Once you understand a strategy, architecture, or market deeply, your brain loses the ability to un-know it and imagine how the world looks to someone hearing it for the first time. Experts speak in compressed abstractions—&quot;synergies,&quot; &quot;platform leverage,&quot; &quot;end-to-end orchestration&quot;—that sound crystal clear in their own heads because they unconsciously supply all the concrete context underneath. Their audience, lacking that hidden scaffolding, hears noise. The Heath brothers argue you cannot simply will the curse away; instead, you counter it with a six-part checklist—their SUCCESs framework:</p>
+<ul class="md-ul">
+              <li><strong>Simple:</strong> Strip an idea to its single most essential core—like a military &quot;Commander&#x27;s Intent&quot; or a proverb—rather than dumbing it down. Prioritizing ruthlessly lets the core guide decisions even when plans change.</li>
+              <li><strong>Unexpected:</strong> Break your audience&#x27;s mental pattern to grab attention, then open a &quot;curiosity gap&quot; that highlights what they don&#x27;t yet know so they stay hooked for the answer.</li>
+              <li><strong>Concrete:</strong> Ground abstractions in sensory, human-scale images and specific actions—the direct antidote to expert jargon. Concrete details give both novices and experts the same mental picture.</li>
+              <li><strong>Credible:</strong> Help listeners verify the claim for themselves using vivid details, human-scale benchmarks, or &quot;testable credentials,&quot; rather than relying solely on external authority.</li>
+              <li><strong>Emotional:</strong> Make people care by appealing to identity, values, or a single identifiable person rather than abstract statistics. Numbers push the brain into an analytical mode that blunts urgency.</li>
+              <li><strong>Stories:</strong> Wrap the message in a narrative that acts as a &quot;flight simulator&quot; for the mind. A good story both shows how to act and supplies the motivation to do it.</li>
+            </ul>
           </div>
           <figure class="econ-chart-box">
             <div class="econ-chart-bar"></div>

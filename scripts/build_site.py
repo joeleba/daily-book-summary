@@ -118,7 +118,8 @@ CSS = """\
       font-size: 19px;
       letter-spacing: -0.01em;
     }
-    html[data-style="ft"] .markdown-body .md-p {
+    html[data-style="ft"] .markdown-body .md-p,
+    html[data-style="ft"] .markdown-body .md-ul {
       font-family: var(--body-serif-font);
       font-size: 15px;
       line-height: 1.68;
@@ -554,7 +555,21 @@ CSS = """\
       margin: 0 0 5px 0;
     }
     .markdown-body .md-p { margin: 0; }
-    .markdown-body .md-p + .md-p, .md-p + .md-p { margin-top: 9px; }
+    .markdown-body .md-p + .md-p, .md-p + .md-p,
+    .markdown-body .md-p + .md-ul, .markdown-body .md-ul + .md-p { margin-top: 9px; }
+    .markdown-body .md-ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .markdown-body .md-ul li {
+      margin: 0;
+    }
+    .markdown-body .md-ul li + li {
+      margin-top: 6px;
+    }
+    .markdown-body .md-ul li::marker {
+      color: var(--econ-red);
+    }
     .idea-section { margin-bottom: 14px; }
 
     .idea-grid {
@@ -1023,11 +1038,45 @@ def esc(value: Any) -> str:
     return html.escape(str(value or ""), quote=True)
 
 
+def render_inline(text: str) -> str:
+    escaped = esc(text)
+    return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", escaped)
+
+
 def render_paragraphs(text: str) -> str:
     blocks = [b.strip() for b in re.split(r"\n\s*\n", (text or "").strip()) if b.strip()]
     if not blocks:
         return ""
-    return "\n".join(f'<p class="md-p">{esc(block)}</p>' for block in blocks)
+    out: list[str] = []
+    for block in blocks:
+        lines = [ln.strip() for ln in block.splitlines() if ln.strip()]
+        buf_p: list[str] = []
+        buf_li: list[str] = []
+
+        def flush_p() -> None:
+            if not buf_p:
+                return
+            out.append(f'<p class="md-p">{render_inline(" ".join(buf_p))}</p>')
+            buf_p.clear()
+
+        def flush_li() -> None:
+            if not buf_li:
+                return
+            items = "\n".join(f"              <li>{render_inline(item)}</li>" for item in buf_li)
+            out.append(f'<ul class="md-ul">\n{items}\n            </ul>')
+            buf_li.clear()
+
+        for ln in lines:
+            m = re.match(r"^[-*•]\s+(.*)$", ln)
+            if m:
+                flush_p()
+                buf_li.append(m.group(1).strip())
+            else:
+                flush_li()
+                buf_p.append(ln)
+        flush_p()
+        flush_li()
+    return "\n".join(out)
 
 
 def format_num(value: float | int, unit: str = "") -> str:
@@ -1054,7 +1103,9 @@ def count_words(post: dict[str, Any]) -> int:
         post.get("argument_against", ""),
         post.get("quote", ""),
     ]
-    return len(" ".join(fields).split())
+    cleaned = re.sub(r"(?m)^\s*[-*•]\s+", "", "\n".join(fields))
+    cleaned = re.sub(r"\*\*(.+?)\*\*", r"\1", cleaned)
+    return len(cleaned.split())
 
 
 def render_hbar_chart(chart: dict[str, Any]) -> str:

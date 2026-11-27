@@ -97,7 +97,8 @@
       font-size: 19px;
       letter-spacing: -0.01em;
     }
-    html[data-style="ft"] .markdown-body .md-p {
+    html[data-style="ft"] .markdown-body .md-p,
+    html[data-style="ft"] .markdown-body .md-ul {
       font-family: var(--body-serif-font);
       font-size: 15px;
       line-height: 1.68;
@@ -533,7 +534,21 @@
       margin: 0 0 5px 0;
     }
     .markdown-body .md-p { margin: 0; }
-    .markdown-body .md-p + .md-p, .md-p + .md-p { margin-top: 9px; }
+    .markdown-body .md-p + .md-p, .md-p + .md-p,
+    .markdown-body .md-p + .md-ul, .markdown-body .md-ul + .md-p { margin-top: 9px; }
+    .markdown-body .md-ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .markdown-body .md-ul li {
+      margin: 0;
+    }
+    .markdown-body .md-ul li + li {
+      margin-top: 6px;
+    }
+    .markdown-body .md-ul li::marker {
+      color: var(--econ-red);
+    }
     .idea-section { margin-bottom: 14px; }
 
     .idea-grid {
