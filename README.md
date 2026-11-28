@@ -1,22 +1,25 @@
 # Daily Book Ideas
 
-One distilled book idea every morning at **06:30 Munich time (Europe/Berlin)**, with toggleable **Economist** and **FT** editorial themes, published automatically to GitHub Pages and emailed to subscribers.
+One distilled, fact-checked book idea every morning at **06:30 Europe/Berlin**, with toggleable **Economist** and **FT** editorial themes, published to GitHub Pages and emailed to subscribers.
 
 ## How It Works
-- **Antigravity Automation (Daily at 06:30 Europe/Berlin)** — Reads [`prompts/daily-digest.md`](prompts/daily-digest.md), picks the next book from `queue` (or an FT Business Book of the Year winner/shortlist), drafts and fact-checks the entry, updates `posts.json`, rebuilds `docs/`, and pushes to `main`.
-- **`posts.json`** — Source of truth for all published digests (`posts`) and upcoming reader requests (`queue`).
+- **External Scheduled Runner (Daily at 06:30 Europe/Berlin)** — Managed outside GitHub Actions. Each run pulls `main`, invokes Antigravity CLI (`agy`) in headless mode with [`prompts/daily-digest.md`](prompts/daily-digest.md) to draft and fact-check a new entry, validates `posts.json`, rebuilds `docs/` via `scripts/build_site.py`, commits and pushes to `main`, and sends the digest via `scripts/send_email.py`.
+- **`posts.json`** — Source of truth for all published digests (`posts`) and upcoming book requests (`queue`).
+- **`prompts/daily-digest.md`** — Prompt and editorial/fact-checking instructions used to generate each entry.
 - **`scripts/build_site.py`** — Deterministically builds the static site (`docs/index.html` and `docs/entries/<id>.html`) from `posts.json`, including SVG `hbar` and `line` charts and Economist / FT + Dark Mode toggles.
-- **`scripts/send_email.py`** — Renders a post as an editorial HTML + plain-text email and delivers it via Gmail SMTP.
-- **`.github/workflows/daily-digest.yml`** — Triggers automatically on `push` to `posts.json` on `main`, ensures `docs/` is up to date for GitHub Pages, and emails any newly added post(s) to `DIGEST_RECIPIENTS`.
-- **`.github/workflows/send-test-email.yml`** — Manual `workflow_dispatch` job to send a test email for an existing post.
+- **`scripts/send_email.py`** — Renders a post (latest by default, or selected via `--post-id` / `--date`) as an editorial HTML + plain-text email and delivers it via SMTP using environment variables (`GMAIL_ADDRESS`, `GMAIL_APP_PASSWORD`, `DIGEST_RECIPIENTS`).
+- **GitHub Pages** — Automatically deploys static files from `main` (`/docs`) on every push. Daily publishing does not use GitHub Actions; [`.github/workflows/send-test-email.yml`](.github/workflows/send-test-email.yml) is retained only for manual test emails (`workflow_dispatch`).
 
-## Setup Checklist
-1. **Enable GitHub Pages:** Go to **Settings → Pages**, set **Source** to `Deploy from a branch`, select **`main`** and folder **`/docs`**, and click **Save**.
-2. **Add email secrets:** Go to **Settings → Secrets and variables → Actions**, and add `GMAIL_ADDRESS`, `GMAIL_APP_PASSWORD`, and `DIGEST_RECIPIENTS`.
-3. **Configure Antigravity Automation:** Create a daily Automation at `06:30 Europe/Berlin` attached to this repository.
+## Maintenance Notes
+- Whenever `posts.json` is edited (including queue updates or post fixes), validate it and rebuild the static site before committing:
+  ```bash
+  python3 -m json.tool posts.json > /dev/null
+  python3 scripts/build_site.py
+  ```
+- GitHub Pages serves directly from `main` → `/docs`.
 
 ## Queueing Books
-Add entries to the `"queue"` array in `posts.json` (editing `queue` alone updates the site without triggering an email):
+Add entries to the `"queue"` array in `posts.json`:
 ```json
 {
   "updated_at": "2026-11-26",
